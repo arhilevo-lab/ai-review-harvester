@@ -19,8 +19,10 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeBackToTop();
     initializeNewsletterForm();
     initializeAOS();
+    initializeImageHandling();
+    injectImageStyles();
     
-    console.log('🤖 AI Review Harvester - Modern 2025 Design Loaded');
+    console.log('🤖 AI Review Harvester - Modern 2025 Design Loaded with Image Handling');
 });
 
 // ===== LOADING SCREEN =====
@@ -538,6 +540,134 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// ===== IMAGE HANDLING & FALLBACK SYSTEM =====
+function initializeImageHandling() {
+    // Comprehensive image error handling and fallback system
+    const images = $$('img');
+    
+    images.forEach(img => {
+        // Add loading state
+        img.classList.add('image-loading');
+        
+        // Handle successful image load
+        img.addEventListener('load', function() {
+            this.classList.remove('image-loading');
+            this.classList.add('image-loaded');
+        });
+        
+        // Enhanced error handling for images without onerror
+        img.addEventListener('error', function() {
+            this.classList.remove('image-loading');
+            this.classList.add('image-error');
+            
+            if (!this.hasAttribute('onerror') && !this.dataset.fallbackUsed) {
+                console.warn(`Image failed to load: ${this.src}`);
+                this.dataset.fallbackUsed = 'true';
+                this.src = createFallbackImage(this.alt || 'Product Image');
+            }
+        });
+    });
+}
+
+// Create a dynamic fallback image with text
+function createFallbackImage(altText) {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = 400;
+    canvas.height = 300;
+    
+    // Create gradient background
+    const gradient = ctx.createLinearGradient(0, 0, 400, 300);
+    gradient.addColorStop(0, '#667eea');
+    gradient.addColorStop(1, '#764ba2');
+    
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, 400, 300);
+    
+    // Add border
+    ctx.strokeStyle = '#ffffff';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(10, 10, 380, 280);
+    
+    // Add icon
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 48px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText('📷', 200, 120);
+    
+    // Add text
+    ctx.font = 'bold 16px Arial';
+    ctx.fillText('Image Not Available', 200, 170);
+    
+    // Add alt text if provided
+    if (altText && altText !== 'Product Image') {
+        ctx.font = '14px Arial';
+        const words = altText.split(' ');
+        let line = '';
+        let y = 200;
+        
+        for (let n = 0; n < words.length; n++) {
+            const testLine = line + words[n] + ' ';
+            const metrics = ctx.measureText(testLine);
+            
+            if (metrics.width > 350 && n > 0) {
+                ctx.fillText(line, 200, y);
+                line = words[n] + ' ';
+                y += 20;
+            } else {
+                line = testLine;
+            }
+        }
+        ctx.fillText(line, 200, y);
+    }
+    
+    return canvas.toDataURL();
+}
+
+// Add loading animations with CSS
+function injectImageStyles() {
+    const style = document.createElement('style');
+    style.textContent = `
+        .image-loading {
+            position: relative;
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: imageLoading 1.5s infinite;
+            min-height: 200px;
+        }
+
+        .image-loaded {
+            animation: imageSlideIn 0.5s ease-out;
+        }
+
+        .image-error {
+            opacity: 0.8;
+            filter: grayscale(10%);
+            border: 2px dashed #ccc;
+        }
+
+        @keyframes imageLoading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        @keyframes imageSlideIn {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Lazy loading placeholder */
+        img[data-src] {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: imageLoading 1.5s infinite;
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+// Image handling initialized in main DOMContentLoaded listener
 
 // ===== ERROR HANDLING =====
 window.addEventListener('error', function(e) {

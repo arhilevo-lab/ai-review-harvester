@@ -1315,6 +1315,116 @@
     }
 }
 
+/* ===== COMPARISON TABLE STYLES ===== */
+.comparison-section {
+    margin: 4rem 0;
+}
+
+.comparison-table {
+    overflow-x: auto;
+    border-radius: var(--radius-2xl, 1.5rem);
+    box-shadow: var(--shadow-2xl, 0 25px 50px -12px rgba(0, 0, 0, 0.25));
+    background: var(--white, #ffffff);
+    backdrop-filter: blur(20px);
+}
+
+.comparison-table table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: var(--text-sm, 0.875rem);
+}
+
+.comparison-table thead {
+    background: var(--primary-gradient, linear-gradient(135deg, #667eea 0%, #764ba2 100%));
+}
+
+.comparison-table thead th {
+    color: var(--white, #ffffff);
+    font-weight: 600;
+    padding: 1.5rem 1rem;
+    text-align: left;
+    font-size: var(--text-base, 1rem);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.comparison-table thead th:first-child {
+    border-top-left-radius: var(--radius-2xl, 1.5rem);
+}
+
+.comparison-table thead th:last-child {
+    border-top-right-radius: var(--radius-2xl, 1.5rem);
+}
+
+.comparison-table tbody tr {
+    transition: all var(--transition-normal, 0.3s ease);
+    border-bottom: 1px solid var(--gray-200, #e5e7eb);
+}
+
+.comparison-table tbody tr:hover {
+    background: var(--gray-50, #f9fafb);
+    transform: scale(1.01);
+    box-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1));
+}
+
+.comparison-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.comparison-table tbody td {
+    padding: 1.25rem 1rem;
+    vertical-align: middle;
+    border-right: 1px solid var(--gray-200, #e5e7eb);
+}
+
+.comparison-table tbody td:last-child {
+    border-right: none;
+}
+
+.comparison-table .best-overall {
+    background: rgba(16, 185, 129, 0.05);
+    border-left: 4px solid var(--accent-color, #10b981);
+}
+
+.comparison-table .best-value {
+    background: rgba(59, 130, 246, 0.05);
+    border-left: 4px solid #3b82f6;
+}
+
+.comparison-table .highlight {
+    background: var(--accent-gradient, linear-gradient(135deg, #10b981 0%, #059669 100%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+    font-size: var(--text-base, 1rem);
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-md, 0.5rem);
+    display: inline-block;
+}
+
+.comparison-table td strong {
+    font-weight: 700;
+    color: var(--gray-900, #111827);
+    font-size: var(--text-base, 1rem);
+}
+
+/* Responsive table */
+@media (max-width: 768px) {
+    .comparison-table {
+        font-size: var(--text-xs, 0.75rem);
+    }
+    
+    .comparison-table thead th,
+    .comparison-table tbody td {
+        padding: 0.75rem 0.5rem;
+    }
+    
+    .comparison-table thead th {
+        font-size: var(--text-sm, 0.875rem);
+    }
+}
+
 /* Add gradient definition for SVG circles */
 svg defs {
     display: none;
