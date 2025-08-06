@@ -1,0 +1,418 @@
+/* Review Page Specific Styles */
+
+.logo a {
+    color: white;
+    text-decoration: none;
+}
+
+.review-article {
+    padding-top: 120px;
+    background: white;
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+    margin-bottom: 2rem;
+    color: #666;
+}
+
+.breadcrumbs a {
+    color: #667eea;
+    text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+    text-decoration: underline;
+}
+
+/* Review Header */
+.review-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.review-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.review-subtitle {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+/* Review Meta */
+.review-meta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.rating-large {
+    text-align: center;
+}
+
+.rating-large .stars {
+    font-size: 2rem;
+    color: #ffd700;
+    margin-right: 0.5rem;
+}
+
+.rating-large .score {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    display: block;
+    margin: 0.5rem 0;
+}
+
+.based-on {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.review-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Product Overview */
+.product-overview {
+    margin-bottom: 3rem;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.product-image img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.product-details h3 {
+    margin-bottom: 1rem;
+    color: #333;
+    font-size: 1.3rem;
+}
+
+.product-details ul {
+    list-style: none;
+    margin-bottom: 2rem;
+}
+
+.product-details ul li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.product-details ul li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #28a745;
+    font-weight: bold;
+}
+
+/* Affiliate Links */
+.affiliate-link-section {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-top: 2rem;
+}
+
+.affiliate-link-section h4 {
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.buy-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.affiliate-button {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    transition: opacity 0.3s ease;
+}
+
+.affiliate-button.amazon {
+    background: #ff9900;
+    color: white;
+}
+
+.affiliate-button.bestbuy {
+    background: #0046be;
+    color: white;
+}
+
+.affiliate-button.walmart {
+    background: #004c91;
+    color: white;
+}
+
+.affiliate-button:hover {
+    opacity: 0.9;
+}
+
+.affiliate-disclosure {
+    font-style: italic;
+    color: #666;
+    margin: 0;
+}
+
+/* Analysis Grid */
+.detailed-analysis {
+    margin: 3rem 0;
+}
+
+.analysis-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.analysis-item {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.analysis-item h3 {
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.score-bar {
+    background: #e0e0e0;
+    height: 10px;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+}
+
+.score-fill {
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    transition: width 0.3s ease;
+}
+
+.score-text {
+    font-weight: bold;
+    color: #667eea;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+/* Pros and Cons */
+.pros-cons {
+    margin: 3rem 0;
+}
+
+.pros-cons-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.pros, .cons {
+    padding: 1.5rem;
+    border-radius: 10px;
+}
+
+.pros {
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+}
+
+.cons {
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+}
+
+.pros h3 {
+    color: #155724;
+    margin-bottom: 1rem;
+}
+
+.cons h3 {
+    color: #721c24;
+    margin-bottom: 1rem;
+}
+
+.pros ul, .cons ul {
+    list-style: none;
+}
+
+.pros ul li, .cons ul li {
+    padding: 0.3rem 0;
+    color: #333;
+}
+
+/* Recommendation */
+.recommendation {
+    margin: 3rem 0;
+}
+
+.recommendation-box {
+    display: flex;
+    gap: 2rem;
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 15px;
+    border-left: 5px solid #667eea;
+}
+
+.recommendation-icon {
+    font-size: 3rem;
+    flex-shrink: 0;
+}
+
+.recommendation-text h3 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.recommendation-text p {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+/* Related Products */
+.related-products {
+    margin: 3rem 0;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.related-item {
+    background: white;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.related-item:hover {
+    transform: translateY(-3px);
+}
+
+.related-item img {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+}
+
+.related-item h4 {
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-size: 1rem;
+}
+
+.related-rating {
+    color: #ffd700;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.related-link {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.related-link:hover {
+    text-decoration: underline;
+}
+
+/* Section Headers */
+.review-content h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #333;
+    border-bottom: 2px solid #667eea;
+    padding-bottom: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .analysis-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .pros-cons-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .review-meta {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .recommendation-box {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .buy-buttons {
+        flex-direction: column;
+    }
+    
+    .related-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .review-article {
+        padding-top: 100px;
+    }
+    
+    .review-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .review-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+}
