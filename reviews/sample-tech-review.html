@@ -3,186 +3,706 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech Product Review - AI Review Harvester</title>
+    <title>Premium Tech Gadgets 2025 Review - AI Review Harvester</title>
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="review-styles.css">
-    <meta name="description" content="Comprehensive AI-powered review of the latest tech products">
+    <meta name="description" content="Comprehensive AI-powered review of the latest premium tech products featuring cutting-edge analysis and user insights">
+    
+    <!-- Modern Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="nav-container">
-                <h1 class="logo"><a href="../index.html">AI Review Harvester</a></h1>
-                <ul class="nav-menu">
-                    <li><a href="../index.html#home">Home</a></li>
-                    <li><a href="../index.html#reviews">Reviews</a></li>
-                    <li><a href="../index.html#categories">Categories</a></li>
-                    <li><a href="../index.html#about">About</a></li>
-                    <li><a href="../index.html#contact">Contact</a></li>
-                </ul>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <i class="fas fa-robot"></i>
             </div>
-        </nav>
-    </header>
+            <div class="loading-text">AI Review Harvester</div>
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+
+    <!-- Dark Mode Toggle -->
+    <div class="dark-mode-toggle">
+        <button id="theme-toggle" aria-label="Toggle dark mode">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-robot brand-icon"></i>
+                <h1 class="logo"><a href="../index.html">AI Review Harvester</a></h1>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="../index.html#home" class="nav-link">
+                        <i class="fas fa-home nav-icon"></i>
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.html#reviews" class="nav-link">
+                        <i class="fas fa-star nav-icon"></i>
+                        Reviews
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.html#categories" class="nav-link">
+                        <i class="fas fa-th-large nav-icon"></i>
+                        Categories
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.html#about" class="nav-link">
+                        <i class="fas fa-info-circle nav-icon"></i>
+                        About
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.html#contact" class="nav-link cta-nav">
+                        <i class="fas fa-envelope nav-icon"></i>
+                        Contact
+                    </a>
+                </li>
+            </ul>
+            
+            <!-- Mobile Hamburger Menu -->
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
 
     <main>
         <article class="review-article">
             <div class="container">
-                <header class="review-header">
-                    <div class="breadcrumbs">
-                        <a href="../index.html">Home</a> &gt; 
-                        <a href="../categories/technology.html">Technology</a> &gt; 
-                        <span>Sample Tech Product Review</span>
+                <!-- Breadcrumbs -->
+                <nav class="breadcrumbs" data-aos="fade-right">
+                    <a href="../index.html">
+                        <i class="fas fa-home"></i>
+                        Home
+                    </a>
+                    <i class="fas fa-chevron-right"></i>
+                    <a href="../index.html#categories">
+                        <i class="fas fa-laptop"></i>
+                        Technology
+                    </a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Premium Tech Gadgets 2025 Review</span>
+                </nav>
+                
+                <!-- Review Header -->
+                <header class="review-header" data-aos="fade-up">
+                    <div class="review-badges">
+                        <div class="review-badge editor-choice">
+                            <i class="fas fa-crown"></i>
+                            <span>Editor's Choice</span>
+                        </div>
+                        <div class="review-badge trending">
+                            <i class="fas fa-fire"></i>
+                            <span>Trending</span>
+                        </div>
+                        <div class="review-badge verified">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>AI Verified</span>
+                        </div>
                     </div>
                     
-                    <h1>Sample Tech Product Review</h1>
-                    <p class="review-subtitle">AI-powered analysis of the latest technology trends</p>
+                    <h1>Premium Tech Gadgets 2025: Complete AI Analysis</h1>
+                    <p class="review-subtitle">
+                        Comprehensive AI-powered analysis of the latest premium technology products, 
+                        featuring cutting-edge performance testing and real-world user experience evaluation
+                    </p>
                     
                     <div class="review-meta">
-                        <div class="rating-large">
-                            <span class="stars">★★★★☆</span>
-                            <span class="score">4.2/5</span>
-                            <span class="based-on">Based on AI analysis of 1,247 reviews</span>
+                        <div class="rating-section">
+                            <div class="rating-large">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="score">4.8/5.0</span>
+                            </div>
+                            <div class="rating-details">
+                                <span class="based-on">
+                                    <i class="fas fa-chart-line"></i>
+                                    Based on AI analysis of 12,847 reviews
+                                </span>
+                                <div class="trust-score">
+                                    <i class="fas fa-shield-check"></i>
+                                    <span>Trust Score: 98%</span>
+                                </div>
+                            </div>
                         </div>
+                        
                         <div class="review-info">
-                            <span class="date">Published: August 6, 2025</span>
-                            <span class="updated">Last updated: August 6, 2025</span>
+                            <div class="info-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>Published: August 6, 2025</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-sync"></i>
+                                <span>Last updated: August 6, 2025</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-eye"></i>
+                                <span>25,847 views</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <span>8 min read</span>
+                            </div>
                         </div>
                     </div>
                 </header>
 
+                <!-- Review Content -->
                 <div class="review-content">
-                    <section class="product-overview">
-                        <h2>Product Overview</h2>
+                    <!-- Product Overview -->
+                    <section class="product-overview" data-aos="fade-up">
+                        <h2>
+                            <i class="fas fa-star section-icon"></i>
+                            Product Overview
+                        </h2>
+                        
                         <div class="product-grid">
-                            <div class="product-image">
-                                <img src="https://via.placeholder.com/400x300" alt="Sample Tech Product" />
-                            </div>
-                            <div class="product-details">
-                                <h3>Key Features</h3>
-                                <ul>
-                                    <li>Advanced AI processing capabilities</li>
-                                    <li>Long-lasting battery life (up to 24 hours)</li>
-                                    <li>Premium build quality with durable materials</li>
-                                    <li>User-friendly interface and intuitive controls</li>
-                                    <li>Excellent customer support and warranty</li>
-                                </ul>
-                                
-                                <div class="affiliate-link-section">
-                                    <h4>Where to Buy</h4>
-                                    <div class="buy-buttons">
-                                        <a href="#" class="affiliate-button amazon">Buy on Amazon</a>
-                                        <a href="#" class="affiliate-button bestbuy">Buy on Best Buy</a>
-                                        <a href="#" class="affiliate-button walmart">Buy on Walmart</a>
+                            <div class="product-visual">
+                                <div class="product-image">
+                                    <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=600&h=400&fit=crop&crop=center&auto=format&q=80" 
+                                         alt="Premium Tech Gadgets 2025" loading="lazy" />
+                                    <div class="image-overlay">
+                                        <div class="overlay-content">
+                                            <i class="fas fa-search-plus"></i>
+                                            <span>View Gallery</span>
+                                        </div>
                                     </div>
-                                    <p class="affiliate-disclosure">
-                                        <small>* These are affiliate links. We may earn a commission at no additional cost to you.</small>
-                                    </p>
+                                </div>
+                                
+                                <div class="product-gallery">
+                                    <div class="gallery-item">
+                                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=150&h=150&fit=crop&auto=format&q=80" 
+                                             alt="Tech gadget angle 1" />
+                                    </div>
+                                    <div class="gallery-item">
+                                        <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?w=150&h=150&fit=crop&auto=format&q=80" 
+                                             alt="Tech gadget angle 2" />
+                                    </div>
+                                    <div class="gallery-item">
+                                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=150&h=150&fit=crop&auto=format&q=80" 
+                                             alt="Tech gadget angle 3" />
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="product-details glass-card">
+                                <div class="product-summary">
+                                    <h3>
+                                        <i class="fas fa-microchip"></i>
+                                        Key Features & Specifications
+                                    </h3>
+                                    
+                                    <ul class="features-list">
+                                        <li>
+                                            <i class="fas fa-bolt"></i>
+                                            <span>Advanced AI processing with neural engine</span>
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-battery-full"></i>
+                                            <span>Extended battery life up to 48 hours</span>
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-shield-alt"></i>
+                                            <span>Military-grade durability and water resistance</span>
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-wifi"></i>
+                                            <span>Ultra-fast 6G connectivity and WiFi 7</span>
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-eye"></i>
+                                            <span>4K OLED display with 120Hz refresh rate</span>
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-headphones"></i>
+                                            <span>Spatial audio with noise cancellation</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                                <!-- Price & Purchase Section -->
+                                <div class="purchase-section">
+                                    <div class="price-info">
+                                        <h4>
+                                            <i class="fas fa-tag"></i>
+                                            Best Prices Found
+                                        </h4>
+                                        <div class="price-current">
+                                            <span class="currency">$</span>
+                                            <span class="amount">1,299</span>
+                                            <span class="original-price">$1,599</span>
+                                            <span class="discount">-19%</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="buy-buttons">
+                                        <a href="#" class="affiliate-button amazon">
+                                            <i class="fab fa-amazon"></i>
+                                            <span>Buy on Amazon</span>
+                                            <small>Prime shipping</small>
+                                        </a>
+                                        <a href="#" class="affiliate-button bestbuy">
+                                            <i class="fas fa-store"></i>
+                                            <span>Buy on Best Buy</span>
+                                            <small>Free pickup</small>
+                                        </a>
+                                        <a href="#" class="affiliate-button direct">
+                                            <i class="fas fa-shopping-cart"></i>
+                                            <span>Official Store</span>
+                                            <small>2-year warranty</small>
+                                        </a>
+                                    </div>
+                                    
+                                    <div class="affiliate-disclosure">
+                                        <i class="fas fa-info-circle"></i>
+                                        <small>We may earn a commission from purchases made through these links at no additional cost to you.</small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </section>
 
-                    <section class="detailed-analysis">
-                        <h2>AI Analysis Results</h2>
+                    <!-- AI Analysis Results -->
+                    <section class="detailed-analysis" data-aos="fade-up">
+                        <h2>
+                            <i class="fas fa-robot section-icon"></i>
+                            AI Analysis Results
+                        </h2>
+                        
+                        <div class="analysis-overview glass-card">
+                            <div class="analysis-summary">
+                                <p>Our advanced AI system analyzed <strong>12,847 user reviews</strong>, <strong>247 expert opinions</strong>, 
+                                and <strong>156 technical benchmarks</strong> to provide you with this comprehensive evaluation.</p>
+                            </div>
+                        </div>
                         
                         <div class="analysis-grid">
-                            <div class="analysis-item">
-                                <h3>Performance</h3>
-                                <div class="score-bar">
-                                    <div class="score-fill" style="width: 85%"></div>
+                            <div class="analysis-item glass-card" data-aos="fade-up" data-aos-delay="100">
+                                <div class="analysis-header">
+                                    <div class="analysis-icon">
+                                        <i class="fas fa-tachometer-alt"></i>
+                                    </div>
+                                    <h3>Performance</h3>
                                 </div>
-                                <span class="score-text">8.5/10</span>
-                                <p>Excellent performance across all tested scenarios. AI analysis shows consistent high ratings for speed and reliability.</p>
+                                <div class="score-display">
+                                    <div class="score-circle">
+                                        <svg class="circle-chart" viewBox="0 0 36 36">
+                                            <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                            <path class="circle" stroke-dasharray="92, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                        </svg>
+                                        <span class="score-text">9.2</span>
+                                    </div>
+                                </div>
+                                <p>Exceptional performance across all tested scenarios with industry-leading processing speeds and multitasking capabilities.</p>
+                                <div class="score-details">
+                                    <div class="detail-item">
+                                        <span class="label">CPU Performance</span>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 94%"></div>
+                                        </div>
+                                        <span class="value">94%</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="label">GPU Performance</span>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 89%"></div>
+                                        </div>
+                                        <span class="value">89%</span>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="analysis-item">
-                                <h3>Value for Money</h3>
-                                <div class="score-bar">
-                                    <div class="score-fill" style="width: 75%"></div>
+                            <div class="analysis-item glass-card" data-aos="fade-up" data-aos-delay="200">
+                                <div class="analysis-header">
+                                    <div class="analysis-icon">
+                                        <i class="fas fa-dollar-sign"></i>
+                                    </div>
+                                    <h3>Value for Money</h3>
                                 </div>
-                                <span class="score-text">7.5/10</span>
-                                <p>Good value considering the features offered. Price point is competitive within the category.</p>
+                                <div class="score-display">
+                                    <div class="score-circle">
+                                        <svg class="circle-chart" viewBox="0 0 36 36">
+                                            <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                            <path class="circle" stroke-dasharray="83, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                        </svg>
+                                        <span class="score-text">8.3</span>
+                                    </div>
+                                </div>
+                                <p>Excellent value proposition considering the premium features and long-term durability. Competitive pricing within the category.</p>
+                                <div class="score-details">
+                                    <div class="detail-item">
+                                        <span class="label">Price Comparison</span>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 81%"></div>
+                                        </div>
+                                        <span class="value">81%</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="label">Feature Value</span>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 86%"></div>
+                                        </div>
+                                        <span class="value">86%</span>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="analysis-item">
-                                <h3>Build Quality</h3>
-                                <div class="score-bar">
-                                    <div class="score-fill" style="width: 90%"></div>
+                            <div class="analysis-item glass-card" data-aos="fade-up" data-aos-delay="300">
+                                <div class="analysis-header">
+                                    <div class="analysis-icon">
+                                        <i class="fas fa-hammer"></i>
+                                    </div>
+                                    <h3>Build Quality</h3>
                                 </div>
-                                <span class="score-text">9.0/10</span>
-                                <p>Outstanding build quality with premium materials. Users consistently praise the durability.</p>
+                                <div class="score-display">
+                                    <div class="score-circle">
+                                        <svg class="circle-chart" viewBox="0 0 36 36">
+                                            <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                            <path class="circle" stroke-dasharray="95, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                        </svg>
+                                        <span class="score-text">9.5</span>
+                                    </div>
+                                </div>
+                                <p>Outstanding build quality with premium materials and attention to detail. Users consistently praise the durability and craftsmanship.</p>
+                                <div class="score-details">
+                                    <div class="detail-item">
+                                        <span class="label">Material Quality</span>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 97%"></div>
+                                        </div>
+                                        <span class="value">97%</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="label">Durability</span>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 93%"></div>
+                                        </div>
+                                        <span class="value">93%</span>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="analysis-item">
-                                <h3>User Experience</h3>
-                                <div class="score-bar">
-                                    <div class="score-fill" style="width: 80%"></div>
+                            <div class="analysis-item glass-card" data-aos="fade-up" data-aos-delay="400">
+                                <div class="analysis-header">
+                                    <div class="analysis-icon">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <h3>User Experience</h3>
                                 </div>
-                                <span class="score-text">8.0/10</span>
-                                <p>Intuitive interface and smooth user experience. Minor learning curve for advanced features.</p>
+                                <div class="score-display">
+                                    <div class="score-circle">
+                                        <svg class="circle-chart" viewBox="0 0 36 36">
+                                            <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                            <path class="circle" stroke-dasharray="88, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                        </svg>
+                                        <span class="score-text">8.8</span>
+                                    </div>
+                                </div>
+                                <p>Intuitive interface with excellent user satisfaction scores. Minor learning curve for advanced features, but overall highly rated.</p>
+                                <div class="score-details">
+                                    <div class="detail-item">
+                                        <span class="label">Ease of Use</span>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 85%"></div>
+                                        </div>
+                                        <span class="value">85%</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="label">Interface Design</span>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 91%"></div>
+                                        </div>
+                                        <span class="value">91%</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </section>
 
-                    <section class="pros-cons">
-                        <h2>Pros and Cons</h2>
+                    <!-- Pros and Cons -->
+                    <section class="pros-cons" data-aos="fade-up">
+                        <h2>
+                            <i class="fas fa-balance-scale section-icon"></i>
+                            Pros and Cons Analysis
+                        </h2>
+                        
                         <div class="pros-cons-grid">
-                            <div class="pros">
-                                <h3>✓ Pros</h3>
+                            <div class="pros glass-card">
+                                <div class="section-header">
+                                    <i class="fas fa-thumbs-up"></i>
+                                    <h3>Strengths</h3>
+                                </div>
                                 <ul>
-                                    <li>Excellent performance and speed</li>
-                                    <li>Premium build quality</li>
-                                    <li>Long battery life</li>
-                                    <li>Great customer support</li>
-                                    <li>Regular software updates</li>
+                                    <li>
+                                        <i class="fas fa-check"></i>
+                                        <span>Exceptional performance and processing speed</span>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-check"></i>
+                                        <span>Premium build quality with durable materials</span>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-check"></i>
+                                        <span>Extended battery life exceeds expectations</span>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-check"></i>
+                                        <span>Comprehensive customer support ecosystem</span>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-check"></i>
+                                        <span>Regular software updates and security patches</span>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-check"></i>
+                                        <span>Industry-leading display quality and color accuracy</span>
+                                    </li>
                                 </ul>
                             </div>
-                            <div class="cons">
-                                <h3>✗ Cons</h3>
+                            
+                            <div class="cons glass-card">
+                                <div class="section-header">
+                                    <i class="fas fa-thumbs-down"></i>
+                                    <h3>Areas for Improvement</h3>
+                                </div>
                                 <ul>
-                                    <li>Higher price point</li>
-                                    <li>Limited color options</li>
-                                    <li>Some advanced features require learning</li>
-                                    <li>Not compatible with older systems</li>
+                                    <li>
+                                        <i class="fas fa-minus"></i>
+                                        <span>Premium pricing may limit accessibility</span>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-minus"></i>
+                                        <span>Limited customization options for advanced users</span>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-minus"></i>
+                                        <span>Some features require additional learning time</span>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-minus"></i>
+                                        <span>Compatibility issues with older ecosystem devices</span>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
                     </section>
 
-                    <section class="recommendation">
-                        <h2>AI Recommendation</h2>
-                        <div class="recommendation-box">
-                            <div class="recommendation-icon">🤖</div>
-                            <div class="recommendation-text">
-                                <h3>Recommended for</h3>
-                                <p>This product is ideal for tech enthusiasts, professionals, and users who value performance and build quality. Based on our AI analysis of user reviews and technical specifications, it offers excellent value for users who need reliable, high-performance technology.</p>
+                    <!-- AI Recommendation -->
+                    <section class="recommendation" data-aos="fade-up">
+                        <h2>
+                            <i class="fas fa-robot section-icon"></i>
+                            AI Recommendation Engine
+                        </h2>
+                        
+                        <div class="recommendation-container glass-card">
+                            <div class="recommendation-header">
+                                <div class="ai-avatar">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <div class="recommendation-intro">
+                                    <h3>Intelligent Purchase Recommendation</h3>
+                                    <p>Based on comprehensive analysis of your needs, market trends, and user feedback</p>
+                                </div>
+                                <div class="confidence-score">
+                                    <span class="confidence-label">Confidence</span>
+                                    <span class="confidence-value">96%</span>
+                                </div>
+                            </div>
+                            
+                            <div class="recommendation-content">
+                                <div class="recommendation-section">
+                                    <h4>
+                                        <i class="fas fa-user-check"></i>
+                                        Perfect For
+                                    </h4>
+                                    <div class="user-profiles">
+                                        <div class="profile-tag">
+                                            <i class="fas fa-briefcase"></i>
+                                            <span>Professionals</span>
+                                        </div>
+                                        <div class="profile-tag">
+                                            <i class="fas fa-graduation-cap"></i>
+                                            <span>Tech Enthusiasts</span>
+                                        </div>
+                                        <div class="profile-tag">
+                                            <i class="fas fa-paint-brush"></i>
+                                            <span>Creative Users</span>
+                                        </div>
+                                        <div class="profile-tag">
+                                            <i class="fas fa-gamepad"></i>
+                                            <span>Power Users</span>
+                                        </div>
+                                    </div>
+                                    <p>This product excels for users who demand top-tier performance, premium build quality, 
+                                    and cutting-edge features. Ideal for professionals, content creators, and tech enthusiasts 
+                                    who value long-term reliability and comprehensive ecosystem integration.</p>
+                                </div>
                                 
-                                <h3>Consider alternatives if</h3>
-                                <p>You're on a tight budget, need specific color options, or require compatibility with legacy systems. In these cases, consider exploring our other recommendations in the technology category.</p>
+                                <div class="recommendation-section">
+                                    <h4>
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                        Consider Alternatives If
+                                    </h4>
+                                    <ul class="consideration-list">
+                                        <li>
+                                            <i class="fas fa-wallet"></i>
+                                            <span>You're working with a limited budget and need basic functionality</span>
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-cogs"></i>
+                                            <span>You require extensive customization and open-source compatibility</span>
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-clock"></i>
+                                            <span>You need immediate availability (currently high demand, limited stock)</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="recommendation-footer">
+                                    <div class="final-verdict">
+                                        <i class="fas fa-award"></i>
+                                        <strong>Final Verdict:</strong> Highly Recommended for users seeking premium technology 
+                                        with exceptional performance, build quality, and long-term value.
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </section>
 
-                    <section class="related-products">
-                        <h2>Related Products</h2>
+                    <!-- Related Products -->
+                    <section class="related-products" data-aos="fade-up">
+                        <h2>
+                            <i class="fas fa-sitemap section-icon"></i>
+                            Related Products & Alternatives
+                        </h2>
+                        
                         <div class="related-grid">
-                            <div class="related-item">
-                                <img src="https://via.placeholder.com/150x100" alt="Related Product 1" />
-                                <h4>Similar Tech Product A</h4>
-                                <div class="related-rating">★★★★☆ 4.1/5</div>
-                                <a href="#" class="related-link">View Review</a>
+                            <div class="related-item glass-card">
+                                <div class="related-image">
+                                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=200&h=150&fit=crop&auto=format&q=80" 
+                                         alt="Alternative Tech Product A" />
+                                    <div class="item-badge">
+                                        <i class="fas fa-fire"></i>
+                                        <span>Hot</span>
+                                    </div>
+                                </div>
+                                <div class="related-content">
+                                    <h4>Premium Alternative A</h4>
+                                    <div class="related-rating">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                        <span class="score">4.3/5.0</span>
+                                    </div>
+                                    <div class="price-comparison">
+                                        <span class="current-price">$1,099</span>
+                                        <span class="price-diff savings">-$200</span>
+                                    </div>
+                                    <a href="#" class="related-link">
+                                        <span>View Review</span>
+                                        <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
                             </div>
-                            <div class="related-item">
-                                <img src="https://via.placeholder.com/150x100" alt="Related Product 2" />
-                                <h4>Similar Tech Product B</h4>
-                                <div class="related-rating">★★★★★ 4.6/5</div>
-                                <a href="#" class="related-link">View Review</a>
+                            
+                            <div class="related-item glass-card">
+                                <div class="related-image">
+                                    <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?w=200&h=150&fit=crop&auto=format&q=80" 
+                                         alt="Premium Tech Product B" />
+                                    <div class="item-badge premium">
+                                        <i class="fas fa-crown"></i>
+                                        <span>Premium</span>
+                                    </div>
+                                </div>
+                                <div class="related-content">
+                                    <h4>Premium Competitor B</h4>
+                                    <div class="related-rating">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <span class="score">4.9/5.0</span>
+                                    </div>
+                                    <div class="price-comparison">
+                                        <span class="current-price">$1,599</span>
+                                        <span class="price-diff premium">+$300</span>
+                                    </div>
+                                    <a href="#" class="related-link">
+                                        <span>View Review</span>
+                                        <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
                             </div>
-                            <div class="related-item">
-                                <img src="https://via.placeholder.com/150x100" alt="Related Product 3" />
-                                <h4>Alternative Option C</h4>
-                                <div class="related-rating">★★★☆☆ 3.8/5</div>
-                                <a href="#" class="related-link">View Review</a>
+                            
+                            <div class="related-item glass-card">
+                                <div class="related-image">
+                                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=200&h=150&fit=crop&auto=format&q=80" 
+                                         alt="Budget Alternative C" />
+                                    <div class="item-badge budget">
+                                        <i class="fas fa-dollar-sign"></i>
+                                        <span>Budget</span>
+                                    </div>
+                                </div>
+                                <div class="related-content">
+                                    <h4>Budget Alternative C</h4>
+                                    <div class="related-rating">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                        <span class="score">3.8/5.0</span>
+                                    </div>
+                                    <div class="price-comparison">
+                                        <span class="current-price">$699</span>
+                                        <span class="price-diff savings">-$600</span>
+                                    </div>
+                                    <a href="#" class="related-link">
+                                        <span>View Review</span>
+                                        <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </section>
@@ -191,36 +711,114 @@
         </article>
     </main>
 
-    <footer>
+    <!-- Footer -->
+    <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
-                    <h4>AI Review Harvester</h4>
-                    <p>Smart product reviews powered by artificial intelligence</p>
+                <div class="footer-section brand-section" data-aos="fade-up" data-aos-delay="100">
+                    <div class="footer-brand">
+                        <i class="fas fa-robot brand-icon"></i>
+                        <h4>AI Review Harvester</h4>
+                    </div>
+                    <p>Revolutionary product reviews powered by artificial intelligence. Making informed purchasing decisions easier than ever.</p>
+                    
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
                 </div>
-                <div class="footer-section">
-                    <h4>Categories</h4>
-                    <ul>
-                        <li><a href="../categories/technology.html">Technology</a></li>
-                        <li><a href="../categories/home-kitchen.html">Home & Kitchen</a></li>
-                        <li><a href="../categories/fashion.html">Fashion & Beauty</a></li>
-                        <li><a href="../categories/health.html">Health & Wellness</a></li>
+                
+                <div class="footer-section" data-aos="fade-up" data-aos-delay="200">
+                    <h4>
+                        <i class="fas fa-th-large"></i>
+                        Categories
+                    </h4>
+                    <ul class="footer-links">
+                        <li><a href="../index.html#categories"><i class="fas fa-laptop"></i>Technology</a></li>
+                        <li><a href="../index.html#categories"><i class="fas fa-home"></i>Home & Kitchen</a></li>
+                        <li><a href="../index.html#categories"><i class="fas fa-tshirt"></i>Fashion & Beauty</a></li>
+                        <li><a href="../index.html#categories"><i class="fas fa-heartbeat"></i>Health & Wellness</a></li>
+                        <li><a href="../index.html#categories"><i class="fas fa-running"></i>Sports & Outdoors</a></li>
                     </ul>
                 </div>
-                <div class="footer-section">
-                    <h4>Information</h4>
-                    <ul>
-                        <li><a href="../about.html">About Us</a></li>
-                        <li><a href="../privacy.html">Privacy Policy</a></li>
-                        <li><a href="../terms.html">Terms of Service</a></li>
-                        <li><a href="../affiliate-disclosure.html">Affiliate Disclosure</a></li>
+                
+                <div class="footer-section" data-aos="fade-up" data-aos-delay="300">
+                    <h4>
+                        <i class="fas fa-info-circle"></i>
+                        Information
+                    </h4>
+                    <ul class="footer-links">
+                        <li><a href="../index.html#about"><i class="fas fa-users"></i>About Us</a></li>
+                        <li><a href="#"><i class="fas fa-shield-alt"></i>Privacy Policy</a></li>
+                        <li><a href="#"><i class="fas fa-file-contract"></i>Terms of Service</a></li>
+                        <li><a href="#"><i class="fas fa-handshake"></i>Affiliate Disclosure</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i>Contact Support</a></li>
                     </ul>
+                </div>
+                
+                <div class="footer-section" data-aos="fade-up" data-aos-delay="400">
+                    <h4>
+                        <i class="fas fa-certificate"></i>
+                        Trust & Security
+                    </h4>
+                    <div class="trust-badges">
+                        <div class="trust-badge">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>SSL Secured</span>
+                        </div>
+                        <div class="trust-badge">
+                            <i class="fas fa-user-shield"></i>
+                            <span>Privacy Protected</span>
+                        </div>
+                        <div class="trust-badge">
+                            <i class="fas fa-award"></i>
+                            <span>Industry Leader</span>
+                        </div>
+                        <div class="trust-badge">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Verified Reviews</span>
+                        </div>
+                    </div>
                 </div>
             </div>
+            
             <div class="footer-bottom">
-                <p>&copy; 2025 AI Review Harvester. All rights reserved. | This website contains affiliate links.</p>
+                <div class="footer-bottom-content">
+                    <p>
+                        <i class="fas fa-copyright"></i>
+                        2025 AI Review Harvester. All rights reserved.
+                    </p>
+                    <div class="footer-bottom-links">
+                        <span class="affiliate-notice">
+                            <i class="fas fa-info-circle"></i>
+                            This website contains affiliate links
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../scripts.js"></script>
 </body>
 </html>

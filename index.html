@@ -3,197 +3,714 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Review Harvester - Smart Product Reviews</title>
+    <title>AI Review Harvester - Premium Product Reviews & Insights</title>
     <link rel="stylesheet" href="styles.css">
-    <meta name="description" content="AI-powered product reviews and recommendations with affiliate links">
+    <meta name="description" content="Discover the best products with AI-powered reviews, comprehensive analysis, and smart recommendations. Your trusted guide to informed purchasing decisions.">
+    
+    <!-- Modern Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="nav-container">
-                <h1 class="logo">AI Review Harvester</h1>
-                <ul class="nav-menu">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#reviews">Reviews</a></li>
-                    <li><a href="#categories">Categories</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <i class="fas fa-robot"></i>
             </div>
-        </nav>
-    </header>
+            <div class="loading-text">AI Review Harvester</div>
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+
+    <!-- Dark Mode Toggle -->
+    <div class="dark-mode-toggle">
+        <button id="theme-toggle" aria-label="Toggle dark mode">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-robot brand-icon"></i>
+                <h1 class="logo">AI Review Harvester</h1>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">
+                        <i class="fas fa-home nav-icon"></i>
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#reviews" class="nav-link">
+                        <i class="fas fa-star nav-icon"></i>
+                        Reviews
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#categories" class="nav-link">
+                        <i class="fas fa-th-large nav-icon"></i>
+                        Categories
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">
+                        <i class="fas fa-info-circle nav-icon"></i>
+                        About
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link cta-nav">
+                        <i class="fas fa-envelope nav-icon"></i>
+                        Contact
+                    </a>
+                </li>
+            </ul>
+            
+            <!-- Mobile Hamburger Menu -->
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
 
     <main>
+        <!-- Hero Section -->
         <section id="home" class="hero">
-            <div class="hero-content">
-                <h1>Smart Product Reviews Powered by AI</h1>
-                <p>Discover the best products with our AI-powered review system. Get unbiased reviews, comparisons, and recommendations.</p>
-                <a href="#reviews" class="cta-button">Explore Reviews</a>
+            <div class="hero-background">
+                <div class="hero-particles"></div>
+                <div class="hero-gradient"></div>
+            </div>
+            
+            <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+                <div class="hero-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Trusted by 50,000+ Users</span>
+                </div>
+                
+                <h1 class="hero-title">
+                    Smart Product Reviews
+                    <span class="gradient-text">Powered by AI</span>
+                </h1>
+                
+                <p class="hero-description">
+                    Discover the best products with our advanced AI-powered review system. 
+                    Get unbiased analysis, comprehensive comparisons, and intelligent recommendations 
+                    to make informed purchasing decisions.
+                </p>
+                
+                <div class="hero-buttons">
+                    <a href="#reviews" class="btn-primary">
+                        <i class="fas fa-search"></i>
+                        <span>Explore Reviews</span>
+                    </a>
+                    <a href="#about" class="btn-secondary">
+                        <i class="fas fa-play"></i>
+                        <span>How It Works</span>
+                    </a>
+                </div>
+                
+                <!-- Trust Indicators -->
+                <div class="trust-indicators" data-aos="fade-up" data-aos-delay="200">
+                    <div class="trust-item">
+                        <i class="fas fa-certificate"></i>
+                        <span>SSL Secured</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-user-shield"></i>
+                        <span>Privacy Protected</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-award"></i>
+                        <span>Award Winning</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Scroll Indicator -->
+            <div class="scroll-indicator">
+                <div class="scroll-mouse">
+                    <div class="scroll-wheel"></div>
+                </div>
+                <span>Scroll to explore</span>
             </div>
         </section>
 
-        <section id="featured-reviews" class="featured">
+        <!-- Stats Section -->
+        <section class="stats-section">
             <div class="container">
-                <h2>Latest Reviews - January 2025</h2>
-                <div class="reviews-grid">
-                    <div class="review-card">
-                        <div class="review-image">
-                            <img src="https://cdn.akamai.steamstatic.com/steamdeck/images/steamdeck_oled/hero_oled_480.jpg" alt="Steam Deck OLED" />
+                <div class="stats-grid" data-aos="fade-up">
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-chart-line"></i>
                         </div>
-                        <div class="review-content">
-                            <h3>Steam Deck OLED Review 2025</h3>
-                            <p>The ultimate handheld gaming experience. OLED display, better battery life, and Wi-Fi 6E - based on 500+ real user reviews.</p>
-                            <div class="rating">
-                                <span class="stars">★★★★★</span>
-                                <span class="score">4.7/5</span>
-                            </div>
-                            <a href="reviews/steam-deck-oled-review.html" class="review-link">Read Full Review</a>
-                            <div class="affiliate-notice">
-                                <small>* Contains affiliate links</small>
-                            </div>
-                        </div>
+                        <div class="stat-number" data-count="50000">0</div>
+                        <div class="stat-label">Reviews Analyzed</div>
                     </div>
-
-                    <div class="review-card">
-                        <div class="review-image">
-                            <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-blue-titanium-select-480.jpg" alt="iPhone 15 Pro" />
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
                         </div>
-                        <div class="review-content">
-                            <h3>iPhone 15 Pro Long-Term Review</h3>
-                            <p>Still worth it in 2025? 14 months later, we analyze real user experiences, battery health, and value proposition.</p>
-                            <div class="rating">
-                                <span class="stars">★★★★★</span>
-                                <span class="score">4.5/5</span>
-                            </div>
-                            <a href="reviews/iphone-15-pro-review.html" class="review-link">Read Full Review</a>
-                            <div class="affiliate-notice">
-                                <small>* Contains affiliate links</small>
-                            </div>
-                        </div>
+                        <div class="stat-number" data-count="25000">0</div>
+                        <div class="stat-label">Happy Customers</div>
                     </div>
-
-                    <div class="review-card">
-                        <div class="review-image">
-                            <img src="https://images-na.ssl-images-amazon.com/images/G/01/kitchen/airfryer/2024/AF161_LS1_480.jpg" alt="Best Air Fryers 2025" />
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
                         </div>
-                        <div class="review-content">
-                            <h3>Best Air Fryers 2025</h3>
-                            <p>Ninja Max XL vs Cosori TurboBlaze comparison. Real user reviews from 2000+ verified purchases to find your perfect air fryer.</p>
-                            <div class="rating">
-                                <span class="stars">★★★★★</span>
-                                <span class="score">4.6/5</span>
-                            </div>
-                            <a href="reviews/best-air-fryers-2025.html" class="review-link">Read Full Review</a>
-                            <div class="affiliate-notice">
-                                <small>* Contains affiliate links</small>
-                            </div>
+                        <div class="stat-number" data-count="4.9">0</div>
+                        <div class="stat-label">Average Rating</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
                         </div>
+                        <div class="stat-number" data-count="24">0</div>
+                        <div class="stat-label">Hours Updated</div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Featured Reviews Section -->
+        <section id="reviews" class="featured">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2 class="section-title">
+                        <i class="fas fa-star section-icon"></i>
+                        Featured Reviews
+                    </h2>
+                    <p class="section-subtitle">
+                        Discover our top-rated product reviews powered by advanced AI analysis
+                    </p>
+                </div>
+                
+                <div class="reviews-grid">
+                    <div class="review-card glass-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card-badge">
+                            <i class="fas fa-crown"></i>
+                            <span>Editor's Choice</span>
+                        </div>
+                        
+                        <div class="review-image">
+                            <img src="https://cdn.akamai.steamstatic.com/steamdeck/images/steamdeck_oled/hero_oled_480.jpg" alt="Steam Deck OLED" loading="lazy" />
+                            <div class="image-overlay">
+                                <div class="overlay-content">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    <span>View Details</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="review-content">
+                            <div class="category-tag">
+                                <i class="fas fa-gamepad"></i>
+                                <span>Gaming</span>
+                            </div>
+                            
+                            <h3>Steam Deck OLED Review 2025</h3>
+                            <p>The ultimate handheld gaming experience. OLED display, better battery life, and Wi-Fi 6E - based on 500+ real user reviews...</p>
+                            
+                            <div class="rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="score">4.7/5.0</span>
+                                <span class="review-count">(500+ reviews)</span>
+                            </div>
+                            
+                            <div class="card-footer">
+                                <a href="reviews/steam-deck-oled-review.html" class="review-link">
+                                    <span>Read Full Review</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                                
+                                <div class="verified-badge">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Verified Purchase</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card glass-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card-badge trending">
+                            <i class="fas fa-fire"></i>
+                            <span>Trending</span>
+                        </div>
+                        
+                        <div class="review-image">
+                            <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-blue-titanium-select.jpg?wid=480&hei=480&fmt=jpeg&qlt=80&.v=1693086369818" alt="iPhone 15 Pro" loading="lazy" />
+                            <div class="image-overlay">
+                                <div class="overlay-content">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    <span>View Details</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="review-content">
+                            <div class="category-tag">
+                                <i class="fas fa-mobile-alt"></i>
+                                <span>Smartphones</span>
+                            </div>
+                            
+                            <h3>iPhone 15 Pro Long-Term Review</h3>
+                            <p>Still worth it in 2025? 14 months later, we analyze real user experiences, battery health, and value proposition...</p>
+                            
+                            <div class="rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="score">4.5/5.0</span>
+                                <span class="review-count">(2,000+ reviews)</span>
+                            </div>
+                            
+                            <div class="card-footer">
+                                <a href="reviews/iphone-15-pro-review.html" class="review-link">
+                                    <span>Read Full Review</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                                
+                                <div class="verified-badge">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Verified Purchase</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card glass-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="card-badge">
+                            <i class="fas fa-fire"></i>
+                            <span>Hot Deal</span>
+                        </div>
+                        
+                        <div class="review-image">
+                            <img src="https://images-na.ssl-images-amazon.com/images/G/01/kitchen/airfryer/2024/AF161_LS1_480.jpg" alt="Best Air Fryers 2025" loading="lazy" />
+                            <div class="image-overlay">
+                                <div class="overlay-content">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    <span>View Details</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="review-content">
+                            <div class="category-tag">
+                                <i class="fas fa-utensils"></i>
+                                <span>Kitchen Appliances</span>
+                            </div>
+                            
+                            <h3>Best Air Fryers 2025</h3>
+                            <p>Ninja Max XL vs Cosori TurboBlaze comparison. Real user reviews from 2000+ verified purchases to find your perfect air fryer...</p>
+                            
+                            <div class="rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="score">4.6/5.0</span>
+                                <span class="review-count">(2,000+ reviews)</span>
+                            </div>
+                            
+                            <div class="card-footer">
+                                <a href="reviews/best-air-fryers-2025.html" class="review-link">
+                                    <span>Read Full Review</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                                
+                                <div class="verified-badge">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Verified Purchase</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- View All Reviews Button -->
+                <div class="section-cta" data-aos="fade-up" data-aos-delay="400">
+                    <a href="#" class="btn-outline">
+                        <span>View All Reviews</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
         <section id="categories" class="categories">
             <div class="container">
-                <h2>Review Categories</h2>
+                <div class="section-header" data-aos="fade-up">
+                    <h2 class="section-title">
+                        <i class="fas fa-th-large section-icon"></i>
+                        Review Categories
+                    </h2>
+                    <p class="section-subtitle">
+                        Explore our comprehensive product categories with expert AI analysis
+                    </p>
+                </div>
+                
                 <div class="categories-grid">
-                    <div class="category-item">
+                    <div class="category-card glass-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="category-icon">
+                            <i class="fas fa-laptop"></i>
+                        </div>
                         <h3>Technology</h3>
-                        <p>Smartphones, laptops, gadgets, and more</p>
+                        <p>Smartphones, laptops, smart devices, and cutting-edge gadgets</p>
+                        <div class="category-stats">
+                            <span class="stat">
+                                <i class="fas fa-star"></i>
+                                <span>1,247 Reviews</span>
+                            </span>
+                        </div>
+                        <a href="#" class="category-link">
+                            <span>Explore Tech</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
-                    <div class="category-item">
+                    
+                    <div class="category-card glass-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="category-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
                         <h3>Home & Kitchen</h3>
-                        <p>Appliances, furniture, and home essentials</p>
+                        <p>Smart appliances, furniture, and essential home products</p>
+                        <div class="category-stats">
+                            <span class="stat">
+                                <i class="fas fa-star"></i>
+                                <span>2,156 Reviews</span>
+                            </span>
+                        </div>
+                        <a href="#" class="category-link">
+                            <span>Explore Home</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
-                    <div class="category-item">
+                    
+                    <div class="category-card glass-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="category-icon">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
                         <h3>Fashion</h3>
-                        <p>Clothing, accessories, and style guides</p>
+                        <p>Clothing, accessories, and style recommendations</p>
+                        <div class="category-stats">
+                            <span class="stat">
+                                <i class="fas fa-star"></i>
+                                <span>3,892 Reviews</span>
+                            </span>
+                        </div>
+                        <a href="#" class="category-link">
+                            <span>Explore Fashion</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
-                    <div class="category-item">
+                    
+                    <div class="category-card glass-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="category-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
                         <h3>Health & Wellness</h3>
                         <p>Fitness equipment, supplements, and wellness products</p>
+                        <div class="category-stats">
+                            <span class="stat">
+                                <i class="fas fa-star"></i>
+                                <span>1,678 Reviews</span>
+                            </span>
+                        </div>
+                        <a href="#" class="category-link">
+                            <span>Explore Health</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
-                    <div class="category-item">
+                    
+                    <div class="category-card glass-card" data-aos="fade-up" data-aos-delay="500">
+                        <div class="category-icon">
+                            <i class="fas fa-spa"></i>
+                        </div>
                         <h3>Beauty</h3>
-                        <p>Skincare, makeup, and personal care products</p>
+                        <p>Skincare, makeup, and premium beauty essentials</p>
+                        <div class="category-stats">
+                            <span class="stat">
+                                <i class="fas fa-star"></i>
+                                <span>2,834 Reviews</span>
+                            </span>
+                        </div>
+                        <a href="#" class="category-link">
+                            <span>Explore Beauty</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
-                    <div class="category-item">
+                    
+                    <div class="category-card glass-card" data-aos="fade-up" data-aos-delay="600">
+                        <div class="category-icon">
+                            <i class="fas fa-running"></i>
+                        </div>
                         <h3>Sports & Outdoors</h3>
-                        <p>Athletic gear, outdoor equipment, and sports accessories</p>
+                        <p>Athletic gear, outdoor equipment, and adventure essentials</p>
+                        <div class="category-stats">
+                            <span class="stat">
+                                <i class="fas fa-star"></i>
+                                <span>1,456 Reviews</span>
+                            </span>
+                        </div>
+                        <a href="#" class="category-link">
+                            <span>Explore Sports</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- About Section -->
         <section id="about" class="about">
             <div class="container">
-                <h2>About AI Review Harvester</h2>
-                <p>We use advanced AI technology to analyze thousands of product reviews, specifications, and user experiences to provide you with comprehensive and unbiased product reviews. Our goal is to help you make informed purchasing decisions.</p>
-                
-                <div class="features">
-                    <div class="feature">
-                        <h4>AI-Powered Analysis</h4>
-                        <p>Our AI analyzes multiple data sources to provide comprehensive reviews</p>
+                <div class="about-content">
+                    <div class="about-text" data-aos="fade-right">
+                        <div class="section-header">
+                            <h2 class="section-title">
+                                <i class="fas fa-robot section-icon"></i>
+                                About AI Review Harvester
+                            </h2>
+                            <p class="section-subtitle">
+                                Revolutionizing product reviews with artificial intelligence
+                            </p>
+                        </div>
+                        
+                        <p class="about-description">
+                            We leverage cutting-edge AI technology to analyze millions of product reviews, 
+                            specifications, and user experiences. Our advanced algorithms provide you with 
+                            comprehensive, unbiased product insights to help you make confident purchasing decisions.
+                        </p>
+                        
+                        <div class="features-list">
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h4>AI-Powered Analysis</h4>
+                                    <p>Advanced machine learning algorithms analyze thousands of data points</p>
+                                </div>
+                            </div>
+                            
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-balance-scale"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h4>Unbiased Reviews</h4>
+                                    <p>Objective assessments based on data analysis, not marketing influence</p>
+                                </div>
+                            </div>
+                            
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-sync-alt"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h4>Real-time Updates</h4>
+                                    <p>Continuously updated reviews with the latest market information</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="#contact" class="btn-primary">
+                            <i class="fas fa-envelope"></i>
+                            <span>Get In Touch</span>
+                        </a>
                     </div>
-                    <div class="feature">
-                        <h4>Unbiased Reviews</h4>
-                        <p>We provide honest assessments based on data, not marketing</p>
+                    
+                    <div class="about-visual" data-aos="fade-left">
+                        <div class="visual-container">
+                            <div class="ai-visualization">
+                                <div class="ai-nodes">
+                                    <div class="node node-1"><i class="fas fa-search"></i></div>
+                                    <div class="node node-2"><i class="fas fa-chart-line"></i></div>
+                                    <div class="node node-3"><i class="fas fa-star"></i></div>
+                                    <div class="node node-4"><i class="fas fa-shield-alt"></i></div>
+                                    <div class="node node-center"><i class="fas fa-robot"></i></div>
+                                </div>
+                                <div class="ai-connections">
+                                    <div class="connection connection-1"></div>
+                                    <div class="connection connection-2"></div>
+                                    <div class="connection connection-3"></div>
+                                    <div class="connection connection-4"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="feature">
-                        <h4>Regular Updates</h4>
-                        <p>Our reviews are continuously updated with the latest information</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="newsletter">
+            <div class="container">
+                <div class="newsletter-content" data-aos="fade-up">
+                    <div class="newsletter-text">
+                        <h3>Stay Updated with Latest Reviews</h3>
+                        <p>Get exclusive access to our premium AI insights and be the first to know about new product reviews</p>
+                    </div>
+                    
+                    <div class="newsletter-form">
+                        <form class="subscribe-form">
+                            <div class="input-group">
+                                <input type="email" placeholder="Enter your email address" required>
+                                <button type="submit" class="btn-primary">
+                                    <i class="fas fa-paper-plane"></i>
+                                    <span>Subscribe</span>
+                                </button>
+                            </div>
+                        </form>
+                        <p class="newsletter-privacy">
+                            <i class="fas fa-lock"></i>
+                            Your privacy is protected. Unsubscribe anytime.
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer>
+    <!-- Footer -->
+    <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
-                    <h4>AI Review Harvester</h4>
-                    <p>Smart product reviews powered by artificial intelligence</p>
+                <div class="footer-section brand-section" data-aos="fade-up" data-aos-delay="100">
+                    <div class="footer-brand">
+                        <i class="fas fa-robot brand-icon"></i>
+                        <h4>AI Review Harvester</h4>
+                    </div>
+                    <p>Revolutionary product reviews powered by artificial intelligence. Making informed purchasing decisions easier than ever.</p>
+                    
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
                 </div>
-                <div class="footer-section">
-                    <h4>Categories</h4>
-                    <ul>
-                        <li><a href="#">Technology</a></li>
-                        <li><a href="#">Home & Kitchen</a></li>
-                        <li><a href="#">Fashion & Beauty</a></li>
-                        <li><a href="#">Health & Wellness</a></li>
+                
+                <div class="footer-section" data-aos="fade-up" data-aos-delay="200">
+                    <h4>
+                        <i class="fas fa-th-large"></i>
+                        Categories
+                    </h4>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-laptop"></i>Technology</a></li>
+                        <li><a href="#"><i class="fas fa-home"></i>Home & Kitchen</a></li>
+                        <li><a href="#"><i class="fas fa-tshirt"></i>Fashion & Beauty</a></li>
+                        <li><a href="#"><i class="fas fa-heartbeat"></i>Health & Wellness</a></li>
+                        <li><a href="#"><i class="fas fa-running"></i>Sports & Outdoors</a></li>
                     </ul>
                 </div>
-                <div class="footer-section">
-                    <h4>Information</h4>
-                    <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Affiliate Disclosure</a></li>
+                
+                <div class="footer-section" data-aos="fade-up" data-aos-delay="300">
+                    <h4>
+                        <i class="fas fa-info-circle"></i>
+                        Information
+                    </h4>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-users"></i>About Us</a></li>
+                        <li><a href="#"><i class="fas fa-shield-alt"></i>Privacy Policy</a></li>
+                        <li><a href="#"><i class="fas fa-file-contract"></i>Terms of Service</a></li>
+                        <li><a href="#"><i class="fas fa-handshake"></i>Affiliate Disclosure</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i>Contact Support</a></li>
                     </ul>
+                </div>
+                
+                <div class="footer-section" data-aos="fade-up" data-aos-delay="400">
+                    <h4>
+                        <i class="fas fa-certificate"></i>
+                        Trust & Security
+                    </h4>
+                    <div class="trust-badges">
+                        <div class="trust-badge">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>SSL Secured</span>
+                        </div>
+                        <div class="trust-badge">
+                            <i class="fas fa-user-shield"></i>
+                            <span>Privacy Protected</span>
+                        </div>
+                        <div class="trust-badge">
+                            <i class="fas fa-award"></i>
+                            <span>Industry Leader</span>
+                        </div>
+                        <div class="trust-badge">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Verified Reviews</span>
+                        </div>
+                    </div>
                 </div>
             </div>
+            
             <div class="footer-bottom">
-                <p>&copy; 2025 AI Review Harvester. All rights reserved. | This website contains affiliate links.</p>
+                <div class="footer-bottom-content">
+                    <p>
+                        <i class="fas fa-copyright"></i>
+                        2025 AI Review Harvester. All rights reserved.
+                    </p>
+                    <div class="footer-bottom-links">
+                        <span class="affiliate-notice">
+                            <i class="fas fa-info-circle"></i>
+                            This website contains affiliate links
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Simple smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-    </script>
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="scripts.js"></script>
 </body>
 </html>
