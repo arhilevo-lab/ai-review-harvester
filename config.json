@@ -1,0 +1,47 @@
+{
+    "github_repo": "arhilevo-lab/ai-review-harvester",
+    "github_token": "YOUR_GITHUB_TOKEN_HERE",
+    "affiliate_tag": "reviews-20",
+    "min_reviews_per_product": 50,
+    "target_word_count": 2000,
+    "review_sources": ["amazon", "reddit", "youtube", "google"],
+    "seo_keywords": {
+        "primary": ["review", "2025", "worth it", "pros cons", "buying guide"],
+        "secondary": ["user experience", "real review", "long term", "comparison"]
+    },
+    "trending_niches": [
+        "electronics",
+        "kitchen",
+        "tech gadgets",
+        "home appliances",
+        "gaming",
+        "smartphones",
+        "fitness"
+    ],
+    "content_templates": {
+        "review_structure": [
+            "introduction",
+            "quick_verdict",
+            "key_features",
+            "performance_analysis",
+            "user_experiences",
+            "pros_cons",
+            "comparison",
+            "buying_guide",
+            "faq",
+            "conclusion"
+        ]
+    },
+    "automation_settings": {
+        "auto_publish": true,
+        "update_homepage": true,
+        "generate_sitemap": true,
+        "notify_on_completion": false
+    },
+    "quality_thresholds": {
+        "min_word_count": 1500,
+        "min_user_quotes": 5,
+        "min_sources": 3,
+        "min_rating_confidence": 0.8
+    }
+}
