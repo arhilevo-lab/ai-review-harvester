@@ -21,8 +21,9 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeAOS();
     initializeImageHandling();
     injectImageStyles();
+    initializeImageGallery();
     
-    console.log('🤖 AI Review Harvester - Modern 2025 Design Loaded with Image Handling');
+    console.log('🤖 AI Review Harvester - Modern 2025 Design Loaded with Image Handling & Professional Gallery');
 });
 
 // ===== LOADING SCREEN =====
@@ -691,12 +692,363 @@ console.log(`
 Built with modern web technologies
 `);
 
+// ===== PROFESSIONAL IMAGE GALLERY SYSTEM =====
+function initializeImageGallery() {
+    let currentImageIndex = 0;
+    let galleryImages = [];
+    let lightboxOpen = false;
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    // Create lightbox modal HTML
+    function createLightboxModal() {
+        const existingModal = $('#lightbox-modal');
+        if (existingModal) {
+            existingModal.remove();
+        }
+
+        const modal = document.createElement('div');
+        modal.id = 'lightbox-modal';
+        modal.className = 'lightbox-modal';
+        modal.innerHTML = `
+            <div class="lightbox-content">
+                <img id="lightbox-image" class="lightbox-image" src="" alt="">
+                <div id="lightbox-caption" class="lightbox-caption"></div>
+                <button id="lightbox-close" class="lightbox-close" aria-label="Close gallery">
+                    <i class="fas fa-times"></i>
+                </button>
+                <button id="lightbox-prev" class="lightbox-nav lightbox-prev" aria-label="Previous image">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button id="lightbox-next" class="lightbox-nav lightbox-next" aria-label="Next image">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <div id="lightbox-counter" class="lightbox-counter">
+                    <span id="current-index">1</span> / <span id="total-images">1</span>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        return modal;
+    }
+
+    // Open lightbox with specific image
+    function openLightbox(index) {
+        const modal = $('#lightbox-modal') || createLightboxModal();
+        const lightboxImage = $('#lightbox-image');
+        const lightboxCaption = $('#lightbox-caption');
+        const currentIndexSpan = $('#current-index');
+        const totalImagesSpan = $('#total-images');
+
+        if (!galleryImages.length) return;
+
+        currentImageIndex = index;
+        lightboxOpen = true;
+
+        // Update image and caption
+        lightboxImage.src = galleryImages[currentImageIndex].src;
+        lightboxImage.alt = galleryImages[currentImageIndex].alt;
+        lightboxCaption.textContent = galleryImages[currentImageIndex].caption || galleryImages[currentImageIndex].alt;
+
+        // Update counter
+        currentIndexSpan.textContent = currentImageIndex + 1;
+        totalImagesSpan.textContent = galleryImages.length;
+
+        // Show modal
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+
+        // Focus management
+        modal.focus();
+
+        // Add event listeners
+        setupLightboxEventListeners();
+    }
+
+    // Close lightbox
+    function closeLightbox() {
+        const modal = $('#lightbox-modal');
+        if (modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            lightboxOpen = false;
+            removeLightboxEventListeners();
+        }
+    }
+
+    // Navigate to next image
+    function nextImage() {
+        if (galleryImages.length > 1) {
+            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+            updateLightboxImage();
+        }
+    }
+
+    // Navigate to previous image
+    function prevImage() {
+        if (galleryImages.length > 1) {
+            currentImageIndex = currentImageIndex === 0 ? galleryImages.length - 1 : currentImageIndex - 1;
+            updateLightboxImage();
+        }
+    }
+
+    // Update lightbox image without reopening
+    function updateLightboxImage() {
+        const lightboxImage = $('#lightbox-image');
+        const lightboxCaption = $('#lightbox-caption');
+        const currentIndexSpan = $('#current-index');
+
+        if (lightboxImage && galleryImages[currentImageIndex]) {
+            // Add fade effect
+            lightboxImage.style.opacity = '0';
+            
+            setTimeout(() => {
+                lightboxImage.src = galleryImages[currentImageIndex].src;
+                lightboxImage.alt = galleryImages[currentImageIndex].alt;
+                lightboxCaption.textContent = galleryImages[currentImageIndex].caption || galleryImages[currentImageIndex].alt;
+                currentIndexSpan.textContent = currentImageIndex + 1;
+                lightboxImage.style.opacity = '1';
+            }, 150);
+        }
+    }
+
+    // Setup event listeners for lightbox
+    function setupLightboxEventListeners() {
+        const modal = $('#lightbox-modal');
+        const closeBtn = $('#lightbox-close');
+        const prevBtn = $('#lightbox-prev');
+        const nextBtn = $('#lightbox-next');
+
+        // Click events
+        closeBtn?.addEventListener('click', closeLightbox);
+        prevBtn?.addEventListener('click', prevImage);
+        nextBtn?.addEventListener('click', nextImage);
+
+        // Click outside to close
+        modal?.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeLightbox();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', handleKeydown);
+
+        // Touch/swipe support
+        modal?.addEventListener('touchstart', handleTouchStart, { passive: true });
+        modal?.addEventListener('touchend', handleTouchEnd, { passive: true });
+    }
+
+    // Remove event listeners
+    function removeLightboxEventListeners() {
+        document.removeEventListener('keydown', handleKeydown);
+    }
+
+    // Keyboard navigation handler
+    function handleKeydown(e) {
+        if (!lightboxOpen) return;
+
+        switch (e.key) {
+            case 'Escape':
+                closeLightbox();
+                break;
+            case 'ArrowLeft':
+                e.preventDefault();
+                prevImage();
+                break;
+            case 'ArrowRight':
+                e.preventDefault();
+                nextImage();
+                break;
+        }
+    }
+
+    // Touch handlers for mobile swipe
+    function handleTouchStart(e) {
+        touchStartX = e.changedTouches[0].screenX;
+    }
+
+    function handleTouchEnd(e) {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const swipeDistance = touchEndX - touchStartX;
+
+        if (Math.abs(swipeDistance) > swipeThreshold) {
+            if (swipeDistance > 0) {
+                prevImage(); // Swipe right = previous
+            } else {
+                nextImage(); // Swipe left = next
+            }
+        }
+    }
+
+    // Initialize gallery from existing images
+    function initializeGalleryFromImages() {
+        const galleryItems = $$('.gallery-item');
+        
+        galleryItems.forEach((item, index) => {
+            const img = item.querySelector('img');
+            const caption = item.querySelector('.gallery-caption')?.textContent || img?.alt || '';
+            
+            if (img) {
+                galleryImages.push({
+                    src: img.src,
+                    alt: img.alt || '',
+                    caption: caption
+                });
+
+                // Add click listener to gallery item
+                item.addEventListener('click', () => openLightbox(index));
+                item.style.cursor = 'pointer';
+                
+                // Add keyboard accessibility
+                item.setAttribute('tabindex', '0');
+                item.setAttribute('role', 'button');
+                item.setAttribute('aria-label', `View image: ${img.alt || 'Gallery image'}`);
+                
+                item.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openLightbox(index);
+                    }
+                });
+            }
+        });
+    }
+
+    // Enhanced FAQ functionality
+    function initializeEnhancedFAQ() {
+        const faqItems = $$('.faq-item');
+        
+        faqItems.forEach(item => {
+            const header = item.querySelector('h4');
+            const content = item.querySelector('.faq-content');
+            const icon = header?.querySelector('i');
+            
+            if (header && content) {
+                header.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all other FAQ items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                            const otherIcon = otherItem.querySelector('h4 i');
+                            if (otherIcon) {
+                                otherIcon.style.transform = 'rotate(0deg)';
+                            }
+                        }
+                    });
+                    
+                    // Toggle current item
+                    if (isActive) {
+                        item.classList.remove('active');
+                        if (icon) icon.style.transform = 'rotate(0deg)';
+                    } else {
+                        item.classList.add('active');
+                        if (icon) icon.style.transform = 'rotate(180deg)';
+                    }
+                });
+
+                // Keyboard accessibility for FAQ
+                header.setAttribute('tabindex', '0');
+                header.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        header.click();
+                    }
+                });
+            }
+        });
+    }
+
+    // Auto-resize lightbox image based on screen size
+    function handleLightboxResize() {
+        const lightboxImage = $('#lightbox-image');
+        if (lightboxImage && lightboxOpen) {
+            const maxWidth = window.innerWidth * 0.9;
+            const maxHeight = window.innerHeight * 0.8;
+            
+            lightboxImage.style.maxWidth = maxWidth + 'px';
+            lightboxImage.style.maxHeight = maxHeight + 'px';
+        }
+    }
+
+    // Initialize gallery components
+    initializeGalleryFromImages();
+    initializeEnhancedFAQ();
+
+    // Handle window resize for lightbox
+    window.addEventListener('resize', debounce(handleLightboxResize, 250));
+
+    // Create initial lightbox modal
+    createLightboxModal();
+
+    // Make gallery functions available globally for external use
+    window.AIGallery = {
+        openLightbox,
+        closeLightbox,
+        nextImage,
+        prevImage,
+        addImage: function(src, alt, caption) {
+            galleryImages.push({ src, alt, caption });
+        },
+        getImages: function() {
+            return [...galleryImages];
+        }
+    };
+}
+
+// ===== ENHANCED IMAGE LAZY LOADING =====
+function initializeLazyLoading() {
+    const lazyImages = $$('img[data-src]');
+    
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.classList.remove('lazy');
+                    img.classList.add('lazy-loading');
+                    
+                    img.onload = () => {
+                        img.classList.remove('lazy-loading');
+                        img.classList.add('lazy-loaded');
+                    };
+                    
+                    imageObserver.unobserve(img);
+                }
+            });
+        }, {
+            rootMargin: '50px 0px',
+            threshold: 0.01
+        });
+
+        lazyImages.forEach(img => imageObserver.observe(img));
+    } else {
+        // Fallback for older browsers
+        lazyImages.forEach(img => {
+            img.src = img.dataset.src;
+        });
+    }
+}
+
+// Initialize lazy loading on DOM ready
+document.addEventListener('DOMContentLoaded', initializeLazyLoading);
+
 // Export functions for external use if needed
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         showNotification,
         isValidEmail,
         throttle,
-        debounce
+        debounce,
+        initializeImageGallery
     };
 }
