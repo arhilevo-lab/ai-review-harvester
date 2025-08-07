@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeCounters();
     initializeBackToTop();
     initializeNewsletterForm();
+    initializeSearchSystem();
     initializeAOS();
     initializeImageHandling();
     injectImageStyles();
@@ -269,6 +270,229 @@ function initializeNewsletterForm() {
             }, 2000);
         });
     }
+}
+
+// ===== SEARCH SYSTEM =====
+function initializeSearchSystem() {
+    const searchInput = $('#search-input');
+    const searchForm = $('.search-form');
+    const searchResults = $('#search-results');
+    
+    if (!searchInput || !searchForm || !searchResults) return;
+    
+    // Search database - in a real app, this would come from an API
+    const searchDatabase = [
+        {
+            id: 'steam-deck-oled',
+            title: 'Steam Deck OLED Review 2025',
+            description: 'The ultimate handheld gaming experience with OLED display and better battery life',
+            category: 'Gaming',
+            url: 'reviews/steam-deck-oled-review.html',
+            icon: 'fas fa-gamepad',
+            keywords: ['steam', 'deck', 'oled', 'gaming', 'handheld', 'portable', 'valve']
+        },
+        {
+            id: 'iphone-15-pro',
+            title: 'iPhone 15 Pro Long-Term Review',
+            description: 'Still worth it in 2025? 14 months later analysis with real user experiences',
+            category: 'Smartphones',
+            url: 'reviews/iphone-15-pro-review.html',
+            icon: 'fas fa-mobile-alt',
+            keywords: ['iphone', '15', 'pro', 'apple', 'smartphone', 'mobile', 'titanium']
+        },
+        {
+            id: 'air-fryers-2025',
+            title: 'Best Air Fryers 2025',
+            description: 'Ninja Max XL vs Cosori TurboBlaze comparison from 2000+ verified purchases',
+            category: 'Kitchen Appliances',
+            url: 'reviews/best-air-fryers-2025.html',
+            icon: 'fas fa-utensils',
+            keywords: ['air', 'fryer', 'ninja', 'cosori', 'kitchen', 'cooking', 'appliance']
+        },
+        {
+            id: 'electronics-category',
+            title: 'Electronics Reviews',
+            description: 'Smartphones, laptops, gaming devices, and cutting-edge gadgets - comprehensive AI-powered reviews',
+            category: 'Category',
+            url: 'categories/electronics.html',
+            icon: 'fas fa-laptop',
+            keywords: ['technology', 'tech', 'gadgets', 'electronics', 'smartphones', 'laptops', 'gaming']
+        },
+        {
+            id: 'kitchen-category',
+            title: 'Kitchen & Home Reviews',
+            description: 'Kitchen appliances, air fryers, coffee makers, and home essentials with real user insights',
+            category: 'Category',
+            url: 'categories/kitchen.html',
+            icon: 'fas fa-utensils',
+            keywords: ['home', 'kitchen', 'appliances', 'air fryer', 'coffee', 'cooking', 'house']
+        }
+    ];
+    
+    let searchTimeout;
+    let currentQuery = '';
+    
+    // Real-time search as user types
+    searchInput.addEventListener('input', function() {
+        const query = this.value.trim();
+        currentQuery = query;
+        
+        clearTimeout(searchTimeout);
+        
+        if (query.length < 2) {
+            hideSearchResults();
+            return;
+        }
+        
+        searchTimeout = setTimeout(() => {
+            performSearch(query);
+        }, 300); // Debounce search
+    });
+    
+    // Handle form submission
+    searchForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const query = searchInput.value.trim();
+        if (query.length >= 2) {
+            performSearch(query);
+        }
+    });
+    
+    // Hide results when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.nav-search')) {
+            hideSearchResults();
+        }
+    });
+    
+    // Keyboard navigation for results
+    searchInput.addEventListener('keydown', function(e) {
+        const activeResult = searchResults.querySelector('.search-result-item.active');
+        const results = searchResults.querySelectorAll('.search-result-item');
+        
+        switch (e.key) {
+            case 'ArrowDown':
+                e.preventDefault();
+                if (activeResult) {
+                    const next = activeResult.nextElementSibling;
+                    if (next && next.classList.contains('search-result-item')) {
+                        activeResult.classList.remove('active');
+                        next.classList.add('active');
+                    }
+                } else if (results.length > 0) {
+                    results[0].classList.add('active');
+                }
+                break;
+                
+            case 'ArrowUp':
+                e.preventDefault();
+                if (activeResult) {
+                    const prev = activeResult.previousElementSibling;
+                    if (prev && prev.classList.contains('search-result-item')) {
+                        activeResult.classList.remove('active');
+                        prev.classList.add('active');
+                    }
+                }
+                break;
+                
+            case 'Enter':
+                if (activeResult) {
+                    e.preventDefault();
+                    activeResult.click();
+                }
+                break;
+                
+            case 'Escape':
+                hideSearchResults();
+                searchInput.blur();
+                break;
+        }
+    });
+    
+    function performSearch(query) {
+        const results = searchDatabase.filter(item => {
+            const searchTerms = query.toLowerCase().split(' ');
+            return searchTerms.some(term => 
+                item.title.toLowerCase().includes(term) ||
+                item.description.toLowerCase().includes(term) ||
+                item.keywords.some(keyword => keyword.includes(term))
+            );
+        });
+        
+        displaySearchResults(results, query);
+    }
+    
+    function displaySearchResults(results, query) {
+        if (results.length === 0) {
+            searchResults.innerHTML = `
+                <div class="search-no-results">
+                    <i class="fas fa-search"></i>
+                    <div>No results found for "${query}"</div>
+                    <div style="font-size: 0.875rem; margin-top: 0.5rem; color: var(--gray-400);">
+                        Try different keywords or browse our categories
+                    </div>
+                </div>
+            `;
+        } else {
+            searchResults.innerHTML = results.map(result => `
+                <a href="${result.url}" class="search-result-item">
+                    <div class="search-result-icon">
+                        <i class="${result.icon}"></i>
+                    </div>
+                    <div class="search-result-content">
+                        <div class="search-result-title">${highlightSearchTerms(result.title, query)}</div>
+                        <div class="search-result-description">${highlightSearchTerms(result.description, query)}</div>
+                    </div>
+                </a>
+            `).join('');
+        }
+        
+        showSearchResults();
+    }
+    
+    function highlightSearchTerms(text, query) {
+        const terms = query.toLowerCase().split(' ');
+        let highlightedText = text;
+        
+        terms.forEach(term => {
+            if (term.length > 1) {
+                const regex = new RegExp(`(${term})`, 'gi');
+                highlightedText = highlightedText.replace(regex, '<strong style="background: var(--primary-color); color: white; padding: 1px 3px; border-radius: 2px;">$1</strong>');
+            }
+        });
+        
+        return highlightedText;
+    }
+    
+    function showSearchResults() {
+        searchResults.classList.add('show');
+        searchResults.setAttribute('aria-hidden', 'false');
+    }
+    
+    function hideSearchResults() {
+        searchResults.classList.remove('show');
+        searchResults.setAttribute('aria-hidden', 'true');
+        // Remove active states
+        searchResults.querySelectorAll('.search-result-item.active').forEach(item => {
+            item.classList.remove('active');
+        });
+    }
+    
+    // Add click handlers for search results
+    searchResults.addEventListener('click', function(e) {
+        const resultItem = e.target.closest('.search-result-item');
+        if (resultItem) {
+            hideSearchResults();
+            searchInput.value = '';
+            
+            // Track search analytics (in a real app)
+            console.log('Search result clicked:', {
+                query: currentQuery,
+                result: resultItem.querySelector('.search-result-title').textContent,
+                url: resultItem.href
+            });
+        }
+    });
 }
 
 // ===== NOTIFICATION SYSTEM =====
