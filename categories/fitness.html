@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness & Wearables Reviews 2025 - AI Review Harvester</title>
+    <link rel="stylesheet" href="../styles.css">
+    <meta name="description" content="Expert fitness and wearable device reviews. Smartwatches, fitness trackers, and health monitoring devices analyzed with AI-powered insights.">
+    
+    <!-- Modern Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-robot brand-icon"></i>
+                <a href="../index.html" class="logo">AI Review Harvester</a>
+            </div>
+            
+            <!-- Search Bar -->
+            <div class="nav-search">
+                <form class="search-form" role="search">
+                    <div class="search-input-container">
+                        <input type="search" 
+                               id="search-input" 
+                               class="search-input" 
+                               placeholder="Search reviews, products..." 
+                               aria-label="Search reviews and products"
+                               autocomplete="off">
+                        <button type="submit" class="search-btn" aria-label="Search">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        <div class="search-results" id="search-results" role="listbox" aria-hidden="true">
+                            <!-- Search results will be populated here -->
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="../index.html" class="nav-link">
+                        <i class="fas fa-home nav-icon"></i>
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.html#reviews" class="nav-link">
+                        <i class="fas fa-star nav-icon"></i>
+                        Reviews
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.html#categories" class="nav-link">
+                        <i class="fas fa-th-large nav-icon"></i>
+                        Categories
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../comparison.html" class="nav-link">
+                        <i class="fas fa-balance-scale nav-icon"></i>
+                        Compare
+                        <span class="comparison-badge">0</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <!-- Mobile Hamburger Menu -->
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Category Hero Section -->
+        <section class="category-hero">
+            <div class="container">
+                <div class="hero-content" data-aos="fade-up">
+                    <div class="breadcrumb">
+                        <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+                        <span class="separator">/</span>
+                        <span>Fitness & Wearables</span>
+                    </div>
+                    
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-running"></i>
+                        </div>
+                        <div class="category-info">
+                            <h1>Fitness & Wearables Reviews</h1>
+                            <p>Expert analysis of smartwatches, fitness trackers, and health monitoring devices. AI-powered insights to help you choose the perfect fitness companion.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="category-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">2</div>
+                            <div class="stat-label">Products Reviewed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">8,200+</div>
+                            <div class="stat-label">User Reviews Analyzed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">4.7</div>
+                            <div class="stat-label">Average Rating</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section class="products-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2>Fitness & Wearables Reviews</h2>
+                    <p>Comprehensive analysis of the best fitness and wearable devices</p>
+                </div>
+                
+                <!-- Filter Options -->
+                <div class="filter-section" data-aos="fade-up" data-aos-delay="100">
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" data-filter="all">All Products</button>
+                        <button class="filter-tab" data-filter="smartwatch">Smartwatches</button>
+                        <button class="filter-tab" data-filter="fitness-tracker">Fitness Trackers</button>
+                        <button class="filter-tab" data-filter="premium">Premium</button>
+                    </div>
+                    
+                    <div class="sort-options">
+                        <select class="sort-select">
+                            <option value="rating">Sort by Rating</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="reviews">Most Reviews</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Products Grid -->
+                <div class="products-grid">
+                    <!-- Apple Watch Ultra 2 -->
+                    <div class="product-card glass-card" data-aos="fade-up" data-aos-delay="200" data-category="smartwatch premium">
+                        <div class="product-badge premium">
+                            <i class="fas fa-crown"></i>
+                            <span>Premium Pick</span>
+                        </div>
+                        
+                        <div class="product-image">
+                            <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MRTZ3ref_VW_34FR+watch-49-titanium-ultra2_VW_34FR_WF_CO?wid=2000&hei=2000&bgc=fafafa&trim=1&fmt=p-jpg&qlt=80&.v=1694507270866" 
+                                 alt="Apple Watch Ultra 2" 
+                                 loading="lazy" 
+                                 onerror="this.src='https://via.placeholder.com/400x300/2c2c2c/ffffff?text=Apple+Watch+Ultra+2'; this.onerror=null;" />
+                            <div class="image-overlay">
+                                <div class="overlay-content">
+                                    <button class="btn-primary compare-btn" data-product="apple-watch-ultra-2" data-name="Apple Watch Ultra 2">
+                                        <i class="fas fa-balance-scale"></i>
+                                        Add to Compare
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-content">
+                            <div class="product-header">
+                                <h3>Apple Watch Ultra 2</h3>
+                                <div class="price-info">
+                                    <span class="current-price">$799</span>
+                                    <span class="original-price">$849</span>
+                                </div>
+                            </div>
+                            
+                            <p class="product-description">
+                                Ultimate fitness and adventure companion with 49mm titanium case, 36-hour battery life, and comprehensive health tracking.
+                            </p>
+                            
+                            <div class="product-highlights">
+                                <div class="highlight">
+                                    <i class="fas fa-battery-full"></i>
+                                    <span>36 Hours Battery</span>
+                                </div>
+                                <div class="highlight">
+                                    <i class="fas fa-swimmer"></i>
+                                    <span>100m Water Resistant</span>
+                                </div>
+                                <div class="highlight">
+                                    <i class="fas fa-map"></i>
+                                    <span>Dual-Band GPS</span>
+                                </div>
+                            </div>
+                            
+                            <div class="rating-section">
+                                <div class="rating">
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <span class="score">9.2/10</span>
+                                </div>
+                                <span class="review-count">Based on 1,200+ reviews</span>
+                            </div>
+                            
+                            <div class="pros-cons">
+                                <div class="pros">
+                                    <h4><i class="fas fa-check-circle"></i> Pros</h4>
+                                    <ul>
+                                        <li>Outstanding battery life</li>
+                                        <li>Rugged titanium construction</li>
+                                        <li>Excellent GPS accuracy</li>
+                                    </ul>
+                                </div>
+                                <div class="cons">
+                                    <h4><i class="fas fa-times-circle"></i> Cons</h4>
+                                    <ul>
+                                        <li>Very expensive</li>
+                                        <li>Large size</li>
+                                        <li>Heavy compared to regular models</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="product-actions">
+                                <a href="../reviews/apple-watch-ultra-2-review.html" class="btn-primary">
+                                    <i class="fas fa-star"></i>
+                                    Read Full Review
+                                </a>
+                                <div class="store-links">
+                                    <a href="#" class="store-link" title="Check Amazon Price">
+                                        <i class="fab fa-amazon"></i>
+                                    </a>
+                                    <a href="#" class="store-link" title="Check Apple Store">
+                                        <i class="fab fa-apple"></i>
+                                    </a>
+                                    <a href="#" class="store-link" title="Check Best Buy">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Garmin Fenix 7X -->
+                    <div class="product-card glass-card" data-aos="fade-up" data-aos-delay="300" data-category="smartwatch premium">
+                        <div class="product-badge editors-choice">
+                            <i class="fas fa-award"></i>
+                            <span>Editor's Choice</span>
+                        </div>
+                        
+                        <div class="product-image">
+                            <img src="https://res.garmin.com/en/products/010-02541-01/g/cf-lg.jpg" 
+                                 alt="Garmin Fenix 7X" 
+                                 loading="lazy" 
+                                 onerror="this.src='https://via.placeholder.com/400x300/2c2c2c/ffffff?text=Garmin+Fenix+7X'; this.onerror=null;" />
+                            <div class="image-overlay">
+                                <div class="overlay-content">
+                                    <button class="btn-primary compare-btn" data-product="garmin-fenix-7x" data-name="Garmin Fenix 7X">
+                                        <i class="fas fa-balance-scale"></i>
+                                        Add to Compare
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-content">
+                            <div class="product-header">
+                                <h3>Garmin Fenix 7X</h3>
+                                <div class="price-info">
+                                    <span class="current-price">$699</span>
+                                    <span class="original-price">$749</span>
+                                </div>
+                            </div>
+                            
+                            <p class="product-description">
+                                Ultimate adventure GPS watch with 28-day battery life, comprehensive mapping, and professional-grade fitness tracking.
+                            </p>
+                            
+                            <div class="product-highlights">
+                                <div class="highlight">
+                                    <i class="fas fa-battery-full"></i>
+                                    <span>28 Days Battery</span>
+                                </div>
+                                <div class="highlight">
+                                    <i class="fas fa-flashlight"></i>
+                                    <span>LED Flashlight</span>
+                                </div>
+                                <div class="highlight">
+                                    <i class="fas fa-sun"></i>
+                                    <span>Solar Charging</span>
+                                </div>
+                            </div>
+                            
+                            <div class="rating-section">
+                                <div class="rating">
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <span class="score">9.4/10</span>
+                                </div>
+                                <span class="review-count">Based on 2,800+ reviews</span>
+                            </div>
+                            
+                            <div class="pros-cons">
+                                <div class="pros">
+                                    <h4><i class="fas fa-check-circle"></i> Pros</h4>
+                                    <ul>
+                                        <li>Exceptional 28-day battery</li>
+                                        <li>Built-in LED flashlight</li>
+                                        <li>Comprehensive mapping</li>
+                                    </ul>
+                                </div>
+                                <div class="cons">
+                                    <h4><i class="fas fa-times-circle"></i> Cons</h4>
+                                    <ul>
+                                        <li>Large and heavy design</li>
+                                        <li>Complex interface</li>
+                                        <li>Limited smart features</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="product-actions">
+                                <a href="../reviews/garmin-fenix-7x-review.html" class="btn-primary">
+                                    <i class="fas fa-star"></i>
+                                    Read Full Review
+                                </a>
+                                <div class="store-links">
+                                    <a href="#" class="store-link" title="Check Amazon Price">
+                                        <i class="fab fa-amazon"></i>
+                                    </a>
+                                    <a href="#" class="store-link" title="Check Garmin Store">
+                                        <i class="fas fa-store"></i>
+                                    </a>
+                                    <a href="#" class="store-link" title="Check REI">
+                                        <i class="fas fa-mountain"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Coming Soon Section -->
+                <div class="coming-soon-section" data-aos="fade-up" data-aos-delay="400">
+                    <div class="coming-soon-card glass-card">
+                        <div class="coming-soon-content">
+                            <div class="coming-soon-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h3>More Reviews Coming Soon</h3>
+                            <p>We're continuously expanding our fitness and wearables reviews. Stay tuned for more comprehensive analyses of the latest fitness trackers, smartwatches, and health monitoring devices.</p>
+                            
+                            <div class="upcoming-products">
+                                <h4>Next Reviews:</h4>
+                                <ul>
+                                    <li><i class="fas fa-heart"></i> Fitbit Charge 6 Complete Analysis</li>
+                                    <li><i class="fas fa-running"></i> Samsung Galaxy Watch 6 Review</li>
+                                    <li><i class="fas fa-bicycle"></i> Polar Vantage V3 Deep Dive</li>
+                                    <li><i class="fas fa-swimmer"></i> Whoop 4.0 Long-term Test</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="newsletter-signup">
+                                <h4>Get Notified</h4>
+                                <form class="mini-subscribe-form">
+                                    <input type="email" placeholder="Enter your email" required>
+                                    <button type="submit" class="btn-outline">
+                                        <i class="fas fa-bell"></i>
+                                        Notify Me
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison CTA -->
+        <section class="comparison-cta">
+            <div class="container">
+                <div class="cta-content" data-aos="fade-up">
+                    <div class="cta-text">
+                        <h3>Compare Fitness Devices</h3>
+                        <p>Use our intelligent comparison tool to find the perfect fitness device for your needs</p>
+                    </div>
+                    <a href="../comparison.html" class="btn-primary">
+                        <i class="fas fa-balance-scale"></i>
+                        Compare Products
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <i class="fas fa-robot brand-icon"></i>
+                        <h4>AI Review Harvester</h4>
+                    </div>
+                    <p>AI-powered fitness and wearables reviews to help you make informed decisions.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Categories</h4>
+                    <ul class="footer-links">
+                        <li><a href="gaming.html">Gaming</a></li>
+                        <li><a href="audio.html">Audio</a></li>
+                        <li><a href="smarthome.html">Smart Home</a></li>
+                        <li><a href="kitchen.html">Kitchen</a></li>
+                        <li><a href="electronics.html">Electronics</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../comparison.html">Compare</a></li>
+                        <li><a href="../index.html#about">About</a></li>
+                        <li><a href="../index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 AI Review Harvester. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../scripts.js"></script>
+    
+    <script>
+        // Filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterTabs = document.querySelectorAll('.filter-tab');
+            const productCards = document.querySelectorAll('.product-card');
+            
+            filterTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const filter = this.dataset.filter;
+                    
+                    // Update active tab
+                    filterTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter products
+                    productCards.forEach(card => {
+                        if (filter === 'all' || card.dataset.category.includes(filter)) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Newsletter signup
+            const miniForm = document.querySelector('.mini-subscribe-form');
+            if (miniForm) {
+                miniForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const email = this.querySelector('input[type="email"]');
+                    if (email.value) {
+                        alert('Thank you! We\'ll notify you when new fitness reviews are available.');
+                        email.value = '';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

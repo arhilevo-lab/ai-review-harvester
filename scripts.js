@@ -9,22 +9,53 @@ const $$ = (selector) => document.querySelectorAll(selector);
 
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all modules
-    initializeLoader();
-    initializeNavigation();
-    initializeDarkMode();
-    initializeSmoothScrolling();
-    initializeScrollAnimations();
-    initializeCounters();
-    initializeBackToTop();
-    initializeNewsletterForm();
-    initializeSearchSystem();
-    initializeAOS();
-    initializeImageHandling();
-    injectImageStyles();
-    initializeImageGallery();
-    
-    console.log('🤖 AI Review Harvester - Modern 2025 Design Loaded with Image Handling & Professional Gallery');
+    try {
+        // Initialize all modules with error handling
+        console.log('Starting initialization...');
+        
+        initializeLoader();
+        console.log('Loader initialized');
+        
+        initializeNavigation();
+        console.log('Navigation initialized');
+        
+        initializeDarkMode();
+        console.log('Dark mode initialized');
+        
+        initializeSmoothScrolling();
+        console.log('Smooth scrolling initialized');
+        
+        initializeScrollAnimations();
+        console.log('Scroll animations initialized');
+        
+        initializeCounters();
+        console.log('Counters initialized');
+        
+        initializeBackToTop();
+        console.log('Back to top initialized');
+        
+        initializeNewsletterForm();
+        console.log('Newsletter form initialized');
+        
+        initializeSearchSystem();
+        console.log('Search system initialized');
+        
+        initializeAOS();
+        console.log('AOS initialized');
+        
+        initializeImageHandling();
+        console.log('Image handling initialized');
+        
+        injectImageStyles();
+        console.log('Image styles injected');
+        
+        initializeImageGallery();
+        console.log('Image gallery initialized');
+        
+        console.log('🤖 AI Review Harvester - Modern 2025 Design Loaded with Image Handling & Professional Gallery');
+    } catch (error) {
+        console.error('Error during initialization:', error);
+    }
 });
 
 // ===== LOADING SCREEN =====
@@ -147,69 +178,88 @@ function initializeSmoothScrolling() {
 
 // ===== SCROLL ANIMATIONS =====
 function initializeScrollAnimations() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-in');
-            }
-        });
-    }, observerOptions);
-    
-    // Observe elements for animation
-    $$('.review-card, .category-card, .feature-item').forEach(el => {
-        observer.observe(el);
-    });
+    try {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry && entry.target && entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        const elements = $$('.review-card, .category-card, .feature-item');
+        if (elements && elements.length > 0) {
+            elements.forEach(el => {
+                if (el) {
+                    observer.observe(el);
+                }
+            });
+        }
+    } catch (error) {
+        console.warn('Error initializing scroll animations:', error);
+    }
 }
 
 // ===== ANIMATED COUNTERS =====
 function initializeCounters() {
-    const counters = $$('.stat-number[data-count]');
-    let hasAnimated = false;
-    
-    function animateCounters() {
-        if (hasAnimated) return;
-        hasAnimated = true;
+    try {
+        const counters = $$('.stat-number[data-count]');
+        if (!counters || counters.length === 0) return;
         
-        counters.forEach(counter => {
-            const target = parseFloat(counter.getAttribute('data-count'));
-            const isDecimal = target % 1 !== 0;
-            let current = 0;
-            const increment = target / 50; // 50 steps
+        let hasAnimated = false;
+        
+        function animateCounters() {
+            if (hasAnimated) return;
+            hasAnimated = true;
             
-            const timer = setInterval(() => {
-                current += increment;
+            counters.forEach(counter => {
+                if (!counter) return;
                 
-                if (current >= target) {
-                    current = target;
-                    clearInterval(timer);
-                }
+                const target = parseFloat(counter.getAttribute('data-count'));
+                if (isNaN(target)) return;
                 
-                if (isDecimal) {
-                    counter.textContent = current.toFixed(1);
-                } else {
-                    counter.textContent = Math.floor(current).toLocaleString();
-                }
-            }, 50);
-        });
-    }
-    
-    // Trigger animation when stats section is visible
-    const statsSection = $('.stats-section');
-    if (statsSection) {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounters();
-                }
+                const isDecimal = target % 1 !== 0;
+                let current = 0;
+                const increment = target / 50; // 50 steps
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    
+                    if (isDecimal) {
+                        counter.textContent = current.toFixed(1);
+                    } else {
+                        counter.textContent = Math.floor(current).toLocaleString();
+                    }
+                }, 50);
             });
-        }, { threshold: 0.5 });
+        }
         
-        observer.observe(statsSection);
+        // Trigger animation when stats section is visible
+        const statsSection = $('.stats-section');
+        if (statsSection) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry && entry.isIntersecting) {
+                        animateCounters();
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            observer.observe(statsSection);
+        }
+    } catch (error) {
+        console.warn('Error initializing counters:', error);
     }
 }
 
@@ -280,8 +330,9 @@ function initializeSearchSystem() {
     
     if (!searchInput || !searchForm || !searchResults) return;
     
-    // Search database - in a real app, this would come from an API
+    // Search database - Complete product and category database
     const searchDatabase = [
+        // Gaming Reviews
         {
             id: 'steam-deck-oled',
             title: 'Steam Deck OLED Review 2025',
@@ -292,23 +343,119 @@ function initializeSearchSystem() {
             keywords: ['steam', 'deck', 'oled', 'gaming', 'handheld', 'portable', 'valve']
         },
         {
+            id: 'ps5-review',
+            title: 'PlayStation 5 Complete Review 2025',
+            description: 'Next-gen console gaming with SSD speed, haptic feedback, and exclusive games',
+            category: 'Gaming',
+            url: 'reviews/ps5-comprehensive-review-2025.html',
+            icon: 'fas fa-gamepad',
+            keywords: ['ps5', 'playstation', 'gaming', 'console', 'sony', 'next-gen']
+        },
+        {
+            id: 'xbox-series-x',
+            title: 'Xbox Series X Complete Review 2025',
+            description: 'Microsoft\'s most powerful console with Game Pass and backward compatibility',
+            category: 'Gaming',
+            url: 'reviews/xbox-series-x-comprehensive-review-2025.html',
+            icon: 'fas fa-gamepad',
+            keywords: ['xbox', 'series', 'microsoft', 'gaming', 'console', 'gamepass']
+        },
+        {
+            id: 'nintendo-switch-oled',
+            title: 'Nintendo Switch OLED Complete Review 2025',
+            description: 'Enhanced portable gaming with vibrant OLED screen and improved battery life',
+            category: 'Gaming',
+            url: 'reviews/nintendo-switch-oled-comprehensive-review-2025.html',
+            icon: 'fas fa-gamepad',
+            keywords: ['nintendo', 'switch', 'oled', 'portable', 'gaming', 'handheld']
+        },
+        // Electronics & Smartphones
+        {
             id: 'iphone-15-pro',
             title: 'iPhone 15 Pro Long-Term Review',
             description: 'Still worth it in 2025? 14 months later analysis with real user experiences',
-            category: 'Smartphones',
+            category: 'Electronics',
             url: 'reviews/iphone-15-pro-review.html',
             icon: 'fas fa-mobile-alt',
             keywords: ['iphone', '15', 'pro', 'apple', 'smartphone', 'mobile', 'titanium']
         },
+        // Smart Home
+        {
+            id: 'echo-show-15',
+            title: 'Amazon Echo Show 15 Complete Review 2025',
+            description: 'Smart display hub for home automation, entertainment, and family organization',
+            category: 'Smart Home',
+            url: 'reviews/echo-show-15-comprehensive-review-2025.html',
+            icon: 'fas fa-home',
+            keywords: ['echo', 'show', 'amazon', 'alexa', 'smart', 'display', 'home']
+        },
+        {
+            id: 'google-nest-hub-max',
+            title: 'Google Nest Hub Max Complete Review 2025',
+            description: 'Smart display with Google Assistant, camera, and premium audio experience',
+            category: 'Smart Home',
+            url: 'reviews/google-nest-hub-max-comprehensive-review-2025.html',
+            icon: 'fas fa-home',
+            keywords: ['google', 'nest', 'hub', 'smart', 'display', 'assistant', 'home']
+        },
+        // Fitness & Wearables
+        {
+            id: 'apple-watch-ultra-2',
+            title: 'Apple Watch Ultra 2 Complete Review 2025',
+            description: 'Ultimate fitness and adventure companion with titanium build and exceptional battery',
+            category: 'Fitness',
+            url: 'reviews/apple-watch-ultra-2-review.html',
+            icon: 'fas fa-running',
+            keywords: ['apple', 'watch', 'ultra', 'fitness', 'titanium', 'smartwatch', 'adventure']
+        },
+        {
+            id: 'garmin-fenix-7x',
+            title: 'Garmin Fenix 7X Complete Review 2025',
+            description: 'Ultimate adventure GPS watch with 28-day battery life and comprehensive mapping',
+            category: 'Fitness',
+            url: 'reviews/garmin-fenix-7x-review.html',
+            icon: 'fas fa-running',
+            keywords: ['garmin', 'fenix', 'gps', 'adventure', 'fitness', 'outdoor', 'multisport']
+        },
+        // Audio & Headphones
+        {
+            id: 'sony-wh-1000xm5',
+            title: 'Sony WH-1000XM5 Complete Review 2025',
+            description: 'Industry-leading noise cancellation with exceptional sound quality and comfort',
+            category: 'Audio',
+            url: 'reviews/sony-wh-1000xm5-review.html',
+            icon: 'fas fa-headphones',
+            keywords: ['sony', 'wh-1000xm5', 'headphones', 'noise', 'cancelling', 'wireless', 'audio']
+        },
+        {
+            id: 'bose-quietcomfort-ultra',
+            title: 'Bose QuietComfort Ultra Complete Review 2025',
+            description: 'Premium noise-cancelling headphones with spatial audio and legendary comfort',
+            category: 'Audio',
+            url: 'reviews/bose-quietcomfort-ultra-review.html',
+            icon: 'fas fa-headphones',
+            keywords: ['bose', 'quietcomfort', 'ultra', 'headphones', 'noise', 'spatial', 'audio']
+        },
+        // Kitchen Appliances
         {
             id: 'air-fryers-2025',
             title: 'Best Air Fryers 2025',
             description: 'Ninja Max XL vs Cosori TurboBlaze comparison from 2000+ verified purchases',
-            category: 'Kitchen Appliances',
+            category: 'Kitchen',
             url: 'reviews/best-air-fryers-2025.html',
             icon: 'fas fa-utensils',
             keywords: ['air', 'fryer', 'ninja', 'cosori', 'kitchen', 'cooking', 'appliance']
         },
+        {
+            id: 'instant-pot-pro-plus',
+            title: 'Instant Pot Pro Plus Complete Review 2025',
+            description: '10-in-1 smart pressure cooker with WiFi connectivity and advanced cooking features',
+            category: 'Kitchen',
+            url: 'reviews/instant-pot-pro-plus-review.html',
+            icon: 'fas fa-utensils',
+            keywords: ['instant', 'pot', 'pressure', 'cooker', 'smart', 'wifi', 'kitchen', 'cooking']
+        },
+        // Categories
         {
             id: 'electronics-category',
             title: 'Electronics Reviews',
@@ -316,7 +463,43 @@ function initializeSearchSystem() {
             category: 'Category',
             url: 'categories/electronics.html',
             icon: 'fas fa-laptop',
-            keywords: ['technology', 'tech', 'gadgets', 'electronics', 'smartphones', 'laptops', 'gaming']
+            keywords: ['technology', 'tech', 'gadgets', 'electronics', 'smartphones', 'laptops']
+        },
+        {
+            id: 'gaming-category',
+            title: 'Gaming Reviews',
+            description: 'Consoles, handhelds, and gaming accessories with in-depth performance analysis',
+            category: 'Category',
+            url: 'categories/gaming.html',
+            icon: 'fas fa-gamepad',
+            keywords: ['gaming', 'console', 'handheld', 'accessories', 'performance']
+        },
+        {
+            id: 'fitness-category',
+            title: 'Fitness & Wearables',
+            description: 'Smartwatches, fitness trackers, and health monitoring devices for active lifestyles',
+            category: 'Category',
+            url: 'categories/fitness.html',
+            icon: 'fas fa-running',
+            keywords: ['fitness', 'smartwatch', 'tracker', 'health', 'wearables', 'sports']
+        },
+        {
+            id: 'audio-category',
+            title: 'Audio & Headphones',
+            description: 'Premium headphones, speakers, and audio equipment with detailed sound analysis',
+            category: 'Category',
+            url: 'categories/audio.html',
+            icon: 'fas fa-headphones',
+            keywords: ['audio', 'headphones', 'speakers', 'sound', 'music', 'wireless']
+        },
+        {
+            id: 'smarthome-category',
+            title: 'Smart Home',
+            description: 'Connected devices, displays, and home automation solutions for modern living',
+            category: 'Category',
+            url: 'categories/smarthome.html',
+            icon: 'fas fa-home',
+            keywords: ['smart', 'home', 'automation', 'connected', 'iot', 'assistant']
         },
         {
             id: 'kitchen-category',
@@ -633,40 +816,55 @@ function isValidEmail(email) {
 
 // ===== ENHANCED INTERACTIONS =====
 
-// Add hover effects for cards
+// Add hover effects for cards - with null checks
 document.addEventListener('DOMContentLoaded', function() {
     // Review card interactions
-    $$('.review-card').forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-10px) scale(1.02)';
+    const reviewCards = $$('.review-card');
+    if (reviewCards) {
+        reviewCards.forEach(card => {
+            if (card) {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            }
         });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-        });
-    });
+    }
     
     // Category card interactions
-    $$('.category-card').forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-5px)';
+    const categoryCards = $$('.category-card');
+    if (categoryCards) {
+        categoryCards.forEach(card => {
+            if (card) {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            }
         });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-        });
-    });
+    }
     
     // Button hover effects
-    $$('.btn-primary, .btn-secondary, .btn-outline').forEach(button => {
-        button.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-2px)';
+    const buttons = $$('.btn-primary, .btn-secondary, .btn-outline');
+    if (buttons) {
+        buttons.forEach(button => {
+            if (button) {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            }
         });
-        
-        button.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-        });
-    });
+    }
 });
 
 // ===== SCROLL PROGRESS INDICATOR =====
@@ -768,31 +966,42 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // ===== IMAGE HANDLING & FALLBACK SYSTEM =====
 function initializeImageHandling() {
-    // Comprehensive image error handling and fallback system
-    const images = $$('img');
-    
-    images.forEach(img => {
-        // Add loading state
-        img.classList.add('image-loading');
+    try {
+        // Comprehensive image error handling and fallback system
+        const images = $$('img');
+        if (!images || images.length === 0) return;
         
-        // Handle successful image load
-        img.addEventListener('load', function() {
-            this.classList.remove('image-loading');
-            this.classList.add('image-loaded');
-        });
-        
-        // Enhanced error handling for images without onerror
-        img.addEventListener('error', function() {
-            this.classList.remove('image-loading');
-            this.classList.add('image-error');
+        images.forEach(img => {
+            if (!img) return;
             
-            if (!this.hasAttribute('onerror') && !this.dataset.fallbackUsed) {
-                console.warn(`Image failed to load: ${this.src}`);
-                this.dataset.fallbackUsed = 'true';
-                this.src = createFallbackImage(this.alt || 'Product Image');
-            }
+            // Add loading state
+            img.classList.add('image-loading');
+            
+            // Handle successful image load
+            img.addEventListener('load', function() {
+                this.classList.remove('image-loading');
+                this.classList.add('image-loaded');
+            });
+            
+            // Enhanced error handling for images without onerror
+            img.addEventListener('error', function() {
+                this.classList.remove('image-loading');
+                this.classList.add('image-error');
+                
+                if (!this.hasAttribute('onerror') && !this.dataset.fallbackUsed) {
+                    console.warn(`Image failed to load: ${this.src}`);
+                    this.dataset.fallbackUsed = 'true';
+                    try {
+                        this.src = createFallbackImage(this.alt || 'Product Image');
+                    } catch (fallbackError) {
+                        console.error('Error creating fallback image:', fallbackError);
+                    }
+                }
+            });
         });
-    });
+    } catch (error) {
+        console.warn('Error initializing image handling:', error);
+    }
 }
 
 // Create a dynamic fallback image with text
@@ -1266,6 +1475,246 @@ function initializeLazyLoading() {
 // Initialize lazy loading on DOM ready
 document.addEventListener('DOMContentLoaded', initializeLazyLoading);
 
+// ===== GLOBAL LIGHTBOX FOR REVIEWS =====
+// Make openLightbox function available globally for review pages
+window.openLightbox = function(imageId) {
+    // Find the image element by ID or use the gallery system
+    const imageElement = document.querySelector(`[data-lightbox="${imageId}"]`) || 
+                        document.querySelector(`.gallery-item:nth-child(${parseInt(imageId.replace('gallery', ''))})`);
+    
+    if (imageElement) {
+        const img = imageElement.querySelector('img');
+        if (img) {
+            // Use the gallery system if available
+            if (window.AIGallery && window.AIGallery.openLightbox) {
+                const galleryImages = window.AIGallery.getImages();
+                const index = Array.from(document.querySelectorAll('.gallery-item')).indexOf(imageElement);
+                if (index >= 0 && index < galleryImages.length) {
+                    window.AIGallery.openLightbox(index);
+                    return;
+                }
+            }
+            
+            // Fallback: create simple lightbox
+            createSimpleLightbox(img.src, img.alt || 'Product Image');
+        }
+    } else {
+        console.warn('Image element not found for lightbox:', imageId);
+    }
+};
+
+// Simple lightbox fallback for review pages
+function createSimpleLightbox(src, alt) {
+    // Remove existing simple lightbox
+    const existing = document.getElementById('simple-lightbox');
+    if (existing) existing.remove();
+    
+    const lightbox = document.createElement('div');
+    lightbox.id = 'simple-lightbox';
+    lightbox.innerHTML = `
+        <div class="simple-lightbox-overlay" onclick="this.parentElement.remove()">
+            <div class="simple-lightbox-content" onclick="event.stopPropagation()">
+                <img src="${src}" alt="${alt}" class="simple-lightbox-image">
+                <button class="simple-lightbox-close" onclick="this.parentElement.parentElement.remove()">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="simple-lightbox-caption">${alt}</div>
+            </div>
+        </div>
+    `;
+    
+    // Add styles if not exists
+    if (!document.getElementById('simple-lightbox-styles')) {
+        const styles = document.createElement('style');
+        styles.id = 'simple-lightbox-styles';
+        styles.textContent = `
+            #simple-lightbox {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .simple-lightbox-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.9);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                animation: fadeIn 0.3s ease;
+            }
+            
+            .simple-lightbox-content {
+                position: relative;
+                max-width: 90vw;
+                max-height: 90vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .simple-lightbox-image {
+                max-width: 100%;
+                max-height: 80vh;
+                object-fit: contain;
+                border-radius: 8px;
+                animation: scaleIn 0.3s ease;
+            }
+            
+            .simple-lightbox-close {
+                position: absolute;
+                top: -40px;
+                right: -40px;
+                background: rgba(255, 255, 255, 0.1);
+                border: none;
+                color: white;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 18px;
+                transition: background 0.3s ease;
+            }
+            
+            .simple-lightbox-close:hover {
+                background: rgba(255, 255, 255, 0.2);
+            }
+            
+            .simple-lightbox-caption {
+                color: white;
+                margin-top: 15px;
+                text-align: center;
+                font-size: 16px;
+                background: rgba(0, 0, 0, 0.7);
+                padding: 8px 16px;
+                border-radius: 4px;
+            }
+            
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            
+            @keyframes scaleIn {
+                from { transform: scale(0.8); opacity: 0; }
+                to { transform: scale(1); opacity: 1; }
+            }
+            
+            @media (max-width: 768px) {
+                .simple-lightbox-close {
+                    top: 10px;
+                    right: 10px;
+                    background: rgba(0, 0, 0, 0.5);
+                }
+            }
+        `;
+        document.head.appendChild(styles);
+    }
+    
+    document.body.appendChild(lightbox);
+    document.body.style.overflow = 'hidden';
+    
+    // Close on escape
+    const closeHandler = (e) => {
+        if (e.key === 'Escape') {
+            lightbox.remove();
+            document.body.style.overflow = '';
+            document.removeEventListener('keydown', closeHandler);
+        }
+    };
+    document.addEventListener('keydown', closeHandler);
+}
+
+// ===== COMPARISON FUNCTIONALITY =====
+window.ComparisonTool = {
+    products: JSON.parse(localStorage.getItem('comparison-products') || '[]'),
+    
+    addProduct: function(productId, productName, productImage, productPrice) {
+        if (this.products.length >= 3) {
+            showNotification('You can only compare up to 3 products at once', 'warning');
+            return;
+        }
+        
+        if (this.products.some(p => p.id === productId)) {
+            showNotification('Product already in comparison', 'info');
+            return;
+        }
+        
+        this.products.push({
+            id: productId,
+            name: productName,
+            image: productImage,
+            price: productPrice,
+            addedAt: new Date().toISOString()
+        });
+        
+        this.saveProducts();
+        this.updateComparisonBadge();
+        showNotification(`${productName} added to comparison`, 'success');
+    },
+    
+    removeProduct: function(productId) {
+        this.products = this.products.filter(p => p.id !== productId);
+        this.saveProducts();
+        this.updateComparisonBadge();
+    },
+    
+    clearAll: function() {
+        this.products = [];
+        this.saveProducts();
+        this.updateComparisonBadge();
+    },
+    
+    saveProducts: function() {
+        localStorage.setItem('comparison-products', JSON.stringify(this.products));
+    },
+    
+    updateComparisonBadge: function() {
+        const badge = document.querySelector('.comparison-badge');
+        if (badge) {
+            badge.textContent = this.products.length;
+            badge.style.display = this.products.length > 0 ? 'block' : 'none';
+        }
+    },
+    
+    getProducts: function() {
+        return [...this.products];
+    }
+};
+
+// Initialize comparison tool
+document.addEventListener('DOMContentLoaded', function() {
+    // Update comparison badge on load
+    if (window.ComparisonTool) {
+        window.ComparisonTool.updateComparisonBadge();
+    }
+    
+    // Handle compare button clicks
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('compare-btn') || e.target.closest('.compare-btn')) {
+            const btn = e.target.classList.contains('compare-btn') ? e.target : e.target.closest('.compare-btn');
+            const productId = btn.dataset.product;
+            const productName = btn.dataset.name || document.title.split(' Review')[0];
+            const productImage = document.querySelector('.hero-image img')?.src || '';
+            const productPrice = document.querySelector('.current-price')?.textContent || '';
+            
+            window.ComparisonTool.addProduct(productId, productName, productImage, productPrice);
+        }
+    });
+});
+
 // Export functions for external use if needed
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
@@ -1273,6 +1722,8 @@ if (typeof module !== 'undefined' && module.exports) {
         isValidEmail,
         throttle,
         debounce,
-        initializeImageGallery
+        initializeImageGallery,
+        openLightbox: window.openLightbox,
+        ComparisonTool: window.ComparisonTool
     };
 }

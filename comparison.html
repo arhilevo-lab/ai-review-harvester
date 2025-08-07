@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Comparison Tool | AI Review Harvester</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="Compare products side by side with AI-powered analysis. Make informed purchasing decisions by comparing features, prices, and user reviews.">
+    
+    <!-- Modern Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+    
+    <style>
+        .comparison-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        .comparison-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+        }
+        
+        .comparison-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        
+        .comparison-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .comparison-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .comparison-count {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+        
+        .comparison-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            overflow-x: auto;
+            background: var(--surface);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .table-wrapper {
+            min-width: 800px;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .product-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-2px);
+        }
+        
+        .remove-product {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--danger);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .remove-product:hover {
+            background: var(--danger-dark);
+            transform: scale(1.1);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 200px;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+        
+        .product-placeholder {
+            width: 100%;
+            height: 200px;
+            background: var(--background-secondary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            border: 2px dashed var(--border);
+        }
+        
+        .product-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .product-features {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+        
+        .product-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .product-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .feature-label {
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+        
+        .feature-value {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .empty-comparison {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--surface);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .empty-icon {
+            font-size: 4rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+        
+        .empty-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .empty-subtitle {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+        
+        .comparison-cta {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            border-radius: 12px;
+            color: white;
+        }
+        
+        .comparison-cta h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .comparison-cta p {
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-title {
+                font-size: 2rem;
+            }
+            
+            .comparison-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .comparison-actions {
+                justify-content: center;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .comparison-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <i class="fas fa-robot"></i>
+            </div>
+            <div class="loading-text">AI Review Harvester</div>
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+
+    <!-- Dark Mode Toggle -->
+    <div class="dark-mode-toggle">
+        <button id="theme-toggle" aria-label="Toggle dark mode">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-robot brand-icon"></i>
+                <h1 class="logo">
+                    <a href="index.html">AI Review Harvester</a>
+                </h1>
+            </div>
+            
+            <!-- Search Bar -->
+            <div class="nav-search">
+                <form class="search-form" role="search">
+                    <div class="search-input-container">
+                        <input type="search" 
+                               id="search-input" 
+                               class="search-input" 
+                               placeholder="Search reviews, products..." 
+                               aria-label="Search reviews and products"
+                               autocomplete="off">
+                        <button type="submit" class="search-btn" aria-label="Search">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        <div class="search-results" id="search-results" role="listbox" aria-hidden="true">
+                            <!-- Search results will be populated here -->
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html#home" class="nav-link">
+                        <i class="fas fa-home nav-icon"></i>
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#reviews" class="nav-link">
+                        <i class="fas fa-star nav-icon"></i>
+                        Reviews
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#categories" class="nav-link">
+                        <i class="fas fa-th-large nav-icon"></i>
+                        Categories
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#about" class="nav-link">
+                        <i class="fas fa-info-circle nav-icon"></i>
+                        About
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="comparison.html" class="nav-link cta-nav">
+                        <i class="fas fa-balance-scale nav-icon"></i>
+                        Compare
+                        <span id="nav-compare-badge" class="compare-badge" style="display: none;">0</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <!-- Mobile Hamburger Menu -->
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Breadcrumb -->
+        <div class="breadcrumb-container">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="index.html" class="breadcrumb-link">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a>
+                <i class="fas fa-chevron-right"></i>
+                <span class="breadcrumb-current">Product Comparison</span>
+            </nav>
+        </div>
+
+        <div class="comparison-container">
+            <!-- Header -->
+            <div class="comparison-header" data-aos="fade-up">
+                <h1 class="comparison-title">Product Comparison Tool</h1>
+                <p class="comparison-subtitle">
+                    Compare products side by side to make informed purchasing decisions. Our AI-powered analysis helps you find the perfect match for your needs.
+                </p>
+            </div>
+
+            <!-- Controls -->
+            <div class="comparison-controls" data-aos="fade-up" data-aos-delay="100">
+                <div class="comparison-count">
+                    Comparing <span id="product-count">0</span> products
+                </div>
+                <div class="comparison-actions">
+                    <button class="btn-outline" onclick="clearComparison()">
+                        <i class="fas fa-trash"></i>
+                        Clear All
+                    </button>
+                    <button class="btn-primary" onclick="exportComparison()">
+                        <i class="fas fa-download"></i>
+                        Export
+                    </button>
+                    <a href="index.html#reviews" class="btn-primary">
+                        <i class="fas fa-plus"></i>
+                        Add Products
+                    </a>
+                </div>
+            </div>
+
+            <!-- Comparison Grid -->
+            <div id="comparison-content">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+
+            <!-- Call to Action -->
+            <div class="comparison-cta" data-aos="fade-up">
+                <h3>Need Help Choosing?</h3>
+                <p>Our AI analysis can help you make the best decision based on your specific needs and budget.</p>
+                <a href="index.html#contact" class="btn-outline btn-white">
+                    <i class="fas fa-headset"></i>
+                    Get Expert Advice
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section brand-section" data-aos="fade-up" data-aos-delay="100">
+                    <div class="footer-brand">
+                        <i class="fas fa-robot brand-icon"></i>
+                        <h4>AI Review Harvester</h4>
+                    </div>
+                    <p>Revolutionary product reviews powered by artificial intelligence. Making informed purchasing decisions easier than ever.</p>
+                    
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section" data-aos="fade-up" data-aos-delay="200">
+                    <h4>
+                        <i class="fas fa-th-large"></i>
+                        Categories
+                    </h4>
+                    <ul class="footer-links">
+                        <li><a href="categories/electronics.html"><i class="fas fa-laptop"></i>Electronics</a></li>
+                        <li><a href="categories/kitchen.html"><i class="fas fa-utensils"></i>Kitchen & Home</a></li>
+                        <li><a href="categories/fitness.html"><i class="fas fa-running"></i>Fitness</a></li>
+                        <li><a href="categories/gaming.html"><i class="fas fa-gamepad"></i>Gaming</a></li>
+                        <li><a href="categories/audio.html"><i class="fas fa-headphones"></i>Audio</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section" data-aos="fade-up" data-aos-delay="300">
+                    <h4>
+                        <i class="fas fa-info-circle"></i>
+                        Information
+                    </h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#about"><i class="fas fa-users"></i>About Us</a></li>
+                        <li><a href="#"><i class="fas fa-shield-alt"></i>Privacy Policy</a></li>
+                        <li><a href="#"><i class="fas fa-file-contract"></i>Terms of Service</a></li>
+                        <li><a href="#"><i class="fas fa-handshake"></i>Affiliate Disclosure</a></li>
+                        <li><a href="index.html#contact"><i class="fas fa-envelope"></i>Contact Support</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section" data-aos="fade-up" data-aos-delay="400">
+                    <h4>
+                        <i class="fas fa-certificate"></i>
+                        Trust & Security
+                    </h4>
+                    <div class="trust-badges">
+                        <div class="trust-badge">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>SSL Secured</span>
+                        </div>
+                        <div class="trust-badge">
+                            <i class="fas fa-user-shield"></i>
+                            <span>Privacy Protected</span>
+                        </div>
+                        <div class="trust-badge">
+                            <i class="fas fa-calendar-check"></i>
+                            <span>Launched January 2025</span>
+                        </div>
+                        <div class="trust-badge">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Verified Reviews</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>
+                        <i class="fas fa-copyright"></i>
+                        2025 AI Review Harvester. All rights reserved. | Modern Design ✨
+                    </p>
+                    <div class="footer-bottom-links">
+                        <span class="affiliate-notice">
+                            <i class="fas fa-info-circle"></i>
+                            This website contains affiliate links
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="scripts.js"></script>
+    <script>
+        // Comparison page functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize comparison page
+            loadComparisonProducts();
+            updateComparisonBadge();
+            
+            // Update comparison count and badge periodically
+            setInterval(() => {
+                updateComparisonBadge();
+                updateProductCount();
+            }, 1000);
+        });
+        
+        function loadComparisonProducts() {
+            const products = ComparisonTool.getProducts();
+            const contentContainer = document.getElementById('comparison-content');
+            const countElement = document.getElementById('product-count');
+            
+            countElement.textContent = products.length;
+            
+            if (products.length === 0) {
+                contentContainer.innerHTML = `
+                    <div class="empty-comparison" data-aos="fade-up">
+                        <div class="empty-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <h3 class="empty-title">No Products to Compare</h3>
+                        <p class="empty-subtitle">Start by adding products from our review pages to compare their features, prices, and ratings.</p>
+                        <a href="index.html#reviews" class="btn-primary">
+                            <i class="fas fa-search"></i>
+                            Browse Reviews
+                        </a>
+                    </div>
+                `;
+                return;
+            }
+            
+            let gridHTML = '<div class="comparison-grid" data-aos="fade-up">';
+            
+            products.forEach((product, index) => {
+                gridHTML += `
+                    <div class="product-card">
+                        <button class="remove-product" onclick="removeProduct('${product.id}')" title="Remove from comparison">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        
+                        ${product.image ? 
+                            `<img src="${product.image}" alt="${product.name}" class="product-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                             <div class="product-placeholder" style="display: none;">
+                                 <i class="fas fa-image"></i>
+                             </div>` :
+                            `<div class="product-placeholder">
+                                 <i class="fas fa-image"></i>
+                             </div>`
+                        }
+                        
+                        <h3 class="product-name">${product.name}</h3>
+                        <div class="product-price">${product.price}</div>
+                        
+                        <ul class="product-features">
+                            ${getProductFeatures(product.id)}
+                        </ul>
+                        
+                        <div class="card-footer">
+                            <a href="${getProductReviewLink(product.id)}" class="btn-primary" style="width: 100%; text-align: center; text-decoration: none; display: block; margin-bottom: 0.5rem;">
+                                <i class="fas fa-eye"></i>
+                                View Full Review
+                            </a>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            gridHTML += '</div>';
+            contentContainer.innerHTML = gridHTML;
+        }
+        
+        function getProductFeatures(productId) {
+            // Product feature data
+            const features = {
+                'ps5-review': [
+                    { label: 'Rating', value: '4.6/5.0' },
+                    { label: 'Storage', value: '825GB SSD' },
+                    { label: 'Performance', value: '4K 120fps' },
+                    { label: 'Price Range', value: '$499 - $699' }
+                ],
+                'apple-watch-ultra-2': [
+                    { label: 'Rating', value: '4.7/5.0' },
+                    { label: 'Battery Life', value: '36 hours' },
+                    { label: 'Display', value: '49mm Retina' },
+                    { label: 'Price', value: '$799' }
+                ],
+                'sony-wh-1000xm5': [
+                    { label: 'Rating', value: '4.8/5.0' },
+                    { label: 'Battery Life', value: '30 hours' },
+                    { label: 'Noise Canceling', value: 'Industry Leading' },
+                    { label: 'Price', value: '$399' }
+                ],
+                'bose-qc-ultra': [
+                    { label: 'Rating', value: '4.7/5.0' },
+                    { label: 'Audio', value: 'Spatial Audio' },
+                    { label: 'Comfort', value: 'Premium' },
+                    { label: 'Price', value: '$429' }
+                ],
+                'instant-pot-pro-plus': [
+                    { label: 'Rating', value: '4.8/5.0' },
+                    { label: 'Capacity', value: '6 Quart' },
+                    { label: 'Functions', value: '10-in-1' },
+                    { label: 'Price', value: '$149' }
+                ]
+            };
+            
+            const productFeatures = features[productId] || [
+                { label: 'Rating', value: 'N/A' },
+                { label: 'Features', value: 'Various' },
+                { label: 'Quality', value: 'High' },
+                { label: 'Price', value: 'Varies' }
+            ];
+            
+            return productFeatures.map(feature => 
+                `<li><span class="feature-label">${feature.label}:</span><span class="feature-value">${feature.value}</span></li>`
+            ).join('');
+        }
+        
+        function getProductReviewLink(productId) {
+            const links = {
+                'ps5-review': 'reviews/ps5-comprehensive-review-2025.html',
+                'apple-watch-ultra-2': 'reviews/apple-watch-ultra-2-review.html',
+                'sony-wh-1000xm5': 'reviews/sony-wh-1000xm5-review.html',
+                'bose-qc-ultra': 'reviews/bose-quietcomfort-ultra-review.html',
+                'instant-pot-pro-plus': 'reviews/instant-pot-pro-plus-review.html'
+            };
+            return links[productId] || 'index.html#reviews';
+        }
+        
+        function removeProduct(productId) {
+            ComparisonTool.removeProduct(productId);
+            loadComparisonProducts();
+            updateComparisonBadge();
+            showNotification('Product removed from comparison', 'success');
+        }
+        
+        function clearComparison() {
+            if (ComparisonTool.getProducts().length === 0) {
+                showNotification('No products to clear', 'info');
+                return;
+            }
+            
+            if (confirm('Are you sure you want to remove all products from comparison?')) {
+                ComparisonTool.clearAll();
+                loadComparisonProducts();
+                updateComparisonBadge();
+                showNotification('All products removed from comparison', 'success');
+            }
+        }
+        
+        function exportComparison() {
+            const products = ComparisonTool.getProducts();
+            if (products.length === 0) {
+                showNotification('No products to export', 'info');
+                return;
+            }
+            
+            // Create a simple text export
+            let exportText = 'AI Review Harvester - Product Comparison\\n';
+            exportText += '==========================================\\n\\n';
+            
+            products.forEach((product, index) => {
+                exportText += `${index + 1}. ${product.name}\\n`;
+                exportText += `   Price: ${product.price}\\n`;
+                exportText += `   Added: ${new Date(product.addedAt).toLocaleDateString()}\\n\\n`;
+            });
+            
+            exportText += 'Visit https://ai-review-harvester.com for detailed reviews and analysis.';
+            
+            // Create and trigger download
+            const blob = new Blob([exportText], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'product-comparison.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+            
+            showNotification('Comparison exported successfully!', 'success');
+        }
+        
+        function updateProductCount() {
+            const countElement = document.getElementById('product-count');
+            if (countElement) {
+                countElement.textContent = ComparisonTool.getProducts().length;
+            }
+        }
+    </script>
+</body>
+</html>
